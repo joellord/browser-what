@@ -33,6 +33,12 @@ Geolocation API demo<br/>
 <div id="location"></div>
 </template>
 
+<template id="pagevisibility">
+Page Visibility demo <br/>
+Page is visible 😉<br/>
+Look at the page title
+</template>
+
 <script type="text/javascript">
 let demos = {};
 
@@ -91,11 +97,8 @@ demos.websockets = {
       socket.emit("demo", {demo: "ws", msg: document.querySelector("#wsText").value});
     });
   }
-}
+};
 
-</script>
-
-<script type="text/javascript">
 demos.notifications = {
   init: () => {
     if (!Notification.permissions) {
@@ -108,10 +111,8 @@ demos.notifications = {
       let notification = new Notification(msg.text, msg.options);
     });
   }
-}
-</script>
+};
 
-<script type="text/javascript">
 demos.location = {
   init: () => {
     document.querySelector("#locationBtn").addEventListener("click", () => {
@@ -124,11 +125,28 @@ demos.location = {
   }
 }
 
+demos.pagevisibility = {
+  init: () => {
+    document.addEventListener("visibilitychange", () => {
+      switch (document.visibilityState) {
+        case "visible": 
+          document.title = "My Browser Does What?";
+          break;
+        case "hidden":
+          document.title = "(Page Hidden) - My Browser Does What?";
+          break;
+        case "prerender":
+          document.title = "(Page Rendering) - My Browser Does What?"
+          break;
+      }
+    });
+  }
+}
 </script>
 
 <script type="text/javascript">
 
-showTemplate("location");
+showTemplate("pagevisibility");
 </script>
 
 </html>

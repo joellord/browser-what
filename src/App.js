@@ -7,6 +7,7 @@ import GetReady from "./slides/GetReady";
 import WS from "./demos/Websockets";
 import Notif from "./demos/Notifications";
 import Loc from "./demos/Location";
+import PV from "./demos/PageVisibility";
 
 import './App.css';
 
@@ -65,6 +66,19 @@ function App() {
         <GetReady />
         <Loc.Demo />
         <Loc.Support />
+
+        <Slide>
+          <Title>Been there, done that. Show me something new!</Title>
+        </Slide>
+
+        {/* Page Visibility */}
+        <PV.Title />
+        <PV.Details />
+        <PV.Code1 />
+        <PV.Code2 />
+        <GetReady />
+        <PV.Demo />
+        <PV.Support />
 
         <Slide>
           <Title>Been there, done that. Show me something new!</Title>
