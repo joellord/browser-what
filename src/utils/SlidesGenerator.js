@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import {Slide, Title, Subtitle, Text, List, Browser, Code } from "@sambego/diorama";
+import {Slide, Title, Subtitle, List, Browser, Code } from "@sambego/diorama";
 import DemoSlide from "../components/DemoSlide";
 import realtime from "../utils/Realtime";
 
@@ -30,6 +30,7 @@ const slidesGeneration = (name, demoName, details, codeSamples, demo) => {
     }
 
     componentDidMount() {
+      if (demo.init) demo.init(this);
       realtime.subscribeDemo(this.handleMessage);
     }
 
@@ -42,9 +43,9 @@ const slidesGeneration = (name, demoName, details, codeSamples, demo) => {
       return (
         <DemoSlide name={demoName}>
           <Subtitle>{name} Demo</Subtitle>
-          <Text>
+          <div>
             {demoRender}
-          </Text>
+          </div>
         </DemoSlide>
       )
     }

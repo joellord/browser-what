@@ -27,6 +27,13 @@ This is the Websockets demo<br/>
 This is the notifications demo
 </template>
 
+<template id="location">
+Geolocation API demo<br/>
+<div id="location"></div>
+<div id="moved"></div>
+<div id="timer"></div>
+</template>
+
 <script type="text/javascript">
 let demos = {};
 
@@ -105,8 +112,38 @@ demos.notifications = {
 </script>
 
 <script type="text/javascript">
+demos.location = {
+  init: () => {
+    var original;
+    let timer = 10 * 60 * 1000;
 
-showTemplate("notifications");
+    const decreaseTimer = () => {
+      timer--;
+      document.querySelector("#timer").innerText = `Tracking for ${Math.floor(timer/60/1000)}:${timer%60}`;
+      setTimeout(decreaseTimer, 1000);
+    }
+    
+    if ("geolocation" in navigator) {
+      let watchID = navigator.geolocation.watchPosition(pos => {
+        document.querySelector("#location").innerText = `You are located at ${pos.coords.latitude}, ${pos.coords.longitude}`;
+
+        if (!original || pos.coords.latitude !== original.latitude || pos.coords.longitude !== original.longitude) {
+          if (original) document.querySelector("#moved").innerText = "Looks like you moved";
+          original = pos.coords;
+        }
+      }, err => console.log(err), {enableHighAccuracy: true});
+
+      setTimeout(() => navigator.geolocation.clearWatch(watchID), timer);
+      setTimeout(decreaseTimer, 1000);
+    }
+  }
+}
+
+</script>
+
+<script type="text/javascript">
+
+showTemplate("location");
 </script>
 
 </html>
