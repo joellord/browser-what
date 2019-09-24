@@ -29,9 +29,8 @@ This is the notifications demo
 
 <template id="location">
 Geolocation API demo<br/>
+<button id="locationBtn">Where Am I?</button>
 <div id="location"></div>
-<div id="moved"></div>
-<div id="timer"></div>
 </template>
 
 <script type="text/javascript">
@@ -115,11 +114,13 @@ demos.notifications = {
 <script type="text/javascript">
 demos.location = {
   init: () => {
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(pos => {
-        document.querySelector("#location").innerText = `You are located at ${pos.coords.latitude}, ${pos.coords.longitude}`;
-      });
-    }
+    document.querySelector("#locationBtn").addEventListener("click", () => {
+      if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(pos => {
+          document.querySelector("#location").innerText = `You are located at ${pos.coords.latitude}, ${pos.coords.longitude}`;
+        });
+      }
+    });
   }
 }
 
