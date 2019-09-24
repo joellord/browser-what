@@ -61,8 +61,9 @@ noDemo();
 <script src="/socket.io/socket.io.js"></script>
 <script>
   let socket = io();
+  let socketConnected = false;
   socket.on("connect", () => {
-    console.log("Connected");
+    socketConnected = true;
   });
   socket.on("demoChange", msg => {
     if (msg.demo) {
@@ -114,27 +115,10 @@ demos.notifications = {
 <script type="text/javascript">
 demos.location = {
   init: () => {
-    var original;
-    let timer = 10 * 60 * 1000;
-
-    const decreaseTimer = () => {
-      timer--;
-      document.querySelector("#timer").innerText = `Tracking for ${Math.floor(timer/60/1000)}:${timer%60}`;
-      setTimeout(decreaseTimer, 1000);
-    }
-    
     if ("geolocation" in navigator) {
-      let watchID = navigator.geolocation.watchPosition(pos => {
+      navigator.geolocation.getCurrentPosition(pos => {
         document.querySelector("#location").innerText = `You are located at ${pos.coords.latitude}, ${pos.coords.longitude}`;
-
-        if (!original || pos.coords.latitude !== original.latitude || pos.coords.longitude !== original.longitude) {
-          if (original) document.querySelector("#moved").innerText = "Looks like you moved";
-          original = pos.coords;
-        }
-      }, err => console.log(err), {enableHighAccuracy: true});
-
-      setTimeout(() => navigator.geolocation.clearWatch(watchID), timer);
-      setTimeout(decreaseTimer, 1000);
+      });
     }
   }
 }
