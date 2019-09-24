@@ -1,0 +1,84 @@
+<html>
+<head>
+  <title>My Browser Does What?</title>
+</head>
+
+<body>
+  <h1>My Browser Does What?</title>
+  <h3>iJS - Munich - Oct 2019</h3>
+
+  <div id="app">
+
+  </div>
+</body>
+
+<template id="waiting">
+Waiting...
+</template>
+
+<template id="websockets">
+This is the Websockets demo<br/>
+<input type="text" id="wsText">
+<button id="wsSend" type="button">Send</button>
+<div id="lastMessages"></div>
+</template>
+
+<template id="notifications">
+This is the notifications demo
+</template>
+
+<script type="text/javascript">
+const showTemplate = (name) => {
+  let container = document.querySelector("#app");
+  while (container.firstChild) {
+    container.removeChild(container.firstChild);
+  }
+
+  let template = document.querySelector(`#${name}`);
+  var clone = document.importNode(template.content, true);
+
+  container.appendChild(clone);
+}
+
+const noDemo = () => {
+  showTemplate("waiting");
+}
+
+noDemo();
+showTemplate("websockets");
+</script>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  let socket = io();
+  socket.on("connect", () => {
+    console.log("Connected");
+  });
+  socket.on("demoChange", msg => {
+    if (msg.demo) {
+      showTemplate(msg.demo);
+    } else {
+      noDemo();
+    }
+  });
+</script>
+
+<script type="text/javascript">
+// WebSockets demo
+let lastMessages = [];
+
+socket.on("demo", data => {
+  lastMessages.push(data.msg.replace("<", "&gt;").replace(">", "&lt;"));
+  if (lastMessages.length > 5) {
+    lastMessages.shift();
+  }
+  document.querySelector("#lastMessages").innerHTML = lastMessages.join("<br/>");
+});
+
+document.querySelector("#wsSend").addEventListener("click", () => {
+  socket.emit("demo", {demo: "ws", msg: document.querySelector("#wsText").value});
+});
+
+</script>
+
+</html>
