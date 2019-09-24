@@ -5,9 +5,9 @@ import { GOOGLE_MAPS_API_KEY } from "../utils/constants";
 const name = "Geolocation API";
 const demoName = "geolocation";
 const details = [
-  "Returns the position of the user",
-  "Gives you a position in latitude/longitude",
-  "You can also track movement"
+  "Returns the position of the user in lat/long",
+  "You can also track movement",
+  "Requires an https connection on mobile devices"
 ];
 const codeSamples = [
   {
