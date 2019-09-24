@@ -53,8 +53,6 @@ const demo = {
       ctx.setState({image: `https://maps.googleapis.com/maps/api/staticmap?center=${position.latitude},${position.longitude}&zoom=19&maptype=satellite&size=400x400&key=${GOOGLE_MAPS_API_KEY}`});
     }
 
-    let imgUrl = ""
-
     return (
       <div>
         This presentation is given at {position.latitude}, {position.longitude}<br/>
@@ -69,7 +67,7 @@ const demo = {
         }
         {ctx.state.image && 
         <div>
-          <img src={ctx.state.image} />
+          <img alt="Satellite view of your current position" src={ctx.state.image} />
         </div>
         }
       </div>

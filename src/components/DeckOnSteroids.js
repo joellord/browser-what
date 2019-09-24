@@ -8,8 +8,8 @@ export default class DeckOnSteroids extends Deck {
     this.gotoSlide = this.gotoSlide.bind(this);
   }
 
-  componentWillMount() {
-    super.componentWillMount();
+  componentDidMount() {
+    super.componentDidMount();
     slide.gotoSlide(this.state.slide); //init
     slide.subscribe(this.gotoSlide);
     slide.setSlideCount(this.props.children.length);

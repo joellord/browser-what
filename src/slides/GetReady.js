@@ -14,7 +14,7 @@ export default class GetReady extends Component {
     this.decreaseTimer = this.decreaseTimer.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.decreaseTimer();
     realtime.sendMessage("notification", {
       text: "Get Ready for a Demo!",

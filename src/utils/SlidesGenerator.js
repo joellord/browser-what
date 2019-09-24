@@ -62,7 +62,7 @@ const slidesGeneration = (name, demoName, details, codeSamples, demo) => {
     <Slide>
       <Subtitle>{name}</Subtitle>
       <List>
-        {details.map(i => (<li>{i}</li>))}
+        {details.map((i, index) => (<li key={index}>{i}</li>))}
       </List>
     </Slide>
   );

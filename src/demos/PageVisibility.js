@@ -36,7 +36,7 @@ const demo = {
           document.title = "(paused) -- " + document.title;
           break;
         case "visible":
-          document.title = document.title.replace(/\([a-z]+\)\ \-\-\ /i, "");
+          document.title = document.title.replace(/\([a-z]+\) -- /i, "");
           increaseTimer();
           break;
         case "prerender":
