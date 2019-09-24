@@ -4,7 +4,7 @@ import DeckOnSteroids from "./components/DeckOnSteroids";
 import { Slide, Title } from "@sambego/diorama";
 import GetReady from "./slides/GetReady";
 
-import WS from "./slides/Websockets";
+import WS from "./demos/Websockets";
 import Notif from "./demos/Notifications";
 
 import './App.css';
