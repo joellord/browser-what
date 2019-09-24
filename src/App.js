@@ -8,6 +8,7 @@ import WS from "./demos/Websockets";
 import Notif from "./demos/Notifications";
 import Loc from "./demos/Location";
 import PV from "./demos/PageVisibility";
+import Spk from "./demos/Speech";
 
 import './App.css';
 
@@ -80,8 +81,17 @@ function App() {
         <PV.Demo />
         <PV.Support />
 
+        {/* Speech */}
+        <Spk.Title />
+        <Spk.Details />
+        <Spk.Code1 />
+        <Spk.Code2 />
+        <Spk.Code3 />
+        <GetReady />
+        <Spk.Demo />
+        <Spk.Support />
         <Slide>
-          <Title>Been there, done that. Show me something new!</Title>
+          <Title>Ok, but show me some cool stuff!</Title>
         </Slide>
 
       </DeckOnSteroids>

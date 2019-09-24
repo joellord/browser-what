@@ -39,6 +39,16 @@ Page is visible 😉<br/>
 Look at the page title
 </template>
 
+<template id="speechsynthesis">
+Speech API demo <br/>
+<form>
+  <input type="text" id="speechTxt" placeholder="Text to speak"/><br/>
+  <select id="voices"></select><br/>
+  Pitch: <input type="number" id="pitch" value="1" length=4 />Rate: <input type="number" id="rate" value="1" length=4 /><br/>
+  <button id="speak">Speak</button>
+</form>
+</template>
+
 <script type="text/javascript">
 let demos = {};
 
@@ -142,11 +152,43 @@ demos.pagevisibility = {
     });
   }
 }
+
+demos.speechsynthesis = {
+  init: () => {
+    const synth = window.speechSynthesis;
+    const inputTxt = document.querySelector("#speechTxt");
+    const voiceSelect = document.querySelector("#voices");
+    const pitch = document.querySelector("#pitch");
+    const rate = document.querySelector("#rate");
+
+    let voices = [];
+
+    const populateVoiceList = () => {
+      voices = synth.getVoices();
+      voices.map(v => {
+        let option = document.createElement("option");
+        option.textContent = `${v.name} (${v.lang})`;
+        option.setAttribute("data-name", v.name);
+        voiceSelect.appendChild(option);
+      });
+    }
+    populateVoiceList();
+
+    document.querySelector("#speak").addEventListener("click", () => {
+      let utterThis = new SpeechSynthesisUtterance(inputTxt.value);
+      let selectedVoice = voiceSelect.selectedOptions[0].getAttribute("data-name");
+      utterThis.voice = synth.getVoices().find(v => v.name == selectedVoice);
+      utterThis.pitch = pitch.value;
+      utterThis.rate = rate.value;
+      synth.speak(utterThis);
+    });
+  }
+}
 </script>
 
 <script type="text/javascript">
 
-showTemplate("pagevisibility");
+showTemplate("speechsynthesis");
 </script>
 
 </html>
