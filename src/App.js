@@ -1,8 +1,7 @@
 import React from 'react';
 
 import DeckOnSteroids from "./components/DeckOnSteroids";
-import DemoSlide from "./components/DemoSlide";
-import { Slide, Title, Subtitle, List, Code, Text } from "@sambego/diorama";
+import { Slide, Title } from "@sambego/diorama";
 import GetReady from "./slides/GetReady";
 
 import WS from "./slides/Websockets";
@@ -43,11 +42,20 @@ function App() {
         </Slide>
 
         {/* Notifications */}
-        
+        <Notif.Title />
+        <Notif.Details />
+        <Notif.Code1 />
+        <Notif.Code2 />
+        <Notif.Code3 />
+        <GetReady />
+        <Notif.Demo />
+        <Notif.Support />
 
         <Slide>
-          <Subtitle>Notifications</Subtitle>
+          <Title>Not impressive, they're used all over and are annoying.</Title>
         </Slide>
+
+        {/* Location */}
 
       </DeckOnSteroids>
     </div>

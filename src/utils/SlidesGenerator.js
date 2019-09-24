@@ -16,12 +16,17 @@ const slidesGeneration = (name, demoName, details, codeSamples, demo) => {
       }
 
       this.handleMessage = this.handleMessage.bind(this);
+      this.sendMessage = this.sendMessage.bind(this);
     }
 
     handleMessage(msg) {
       if (demo.demoSocketCb) {
         demo.demoSocketCb(msg, this);
       }
+    }
+
+    sendMessage(channel, msg) {
+      realtime.sendMessage(channel, msg);
     }
 
     componentDidMount() {

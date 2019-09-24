@@ -29,6 +29,10 @@ class Realtime extends Emitter {
   unsubscribeDemo(cb) {
     this.socket.off("demo", cb);
   }
+
+  sendMessage(channel, message) {
+    this.socket.emit(channel, message);
+  }
 }
 
 let instance = new Realtime();

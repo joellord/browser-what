@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Slide, Title, Subtitle } from "@sambego/diorama";
 import slide from "../utils/SlideState";
+import realtime from "../utils/Realtime";
+import { NOTIF_ICON } from "../utils/constants";
 
 export default class GetReady extends Component {
   timer;
@@ -14,6 +16,13 @@ export default class GetReady extends Component {
 
   componentWillMount() {
     this.decreaseTimer();
+    realtime.sendMessage("notification", {
+      text: "Get Ready for a Demo!",
+      options: {
+        body: "New demo starting in 5 seconds, open the app",
+        icon: NOTIF_ICON
+      }
+    });
   }
 
   componentWillUnmount() {

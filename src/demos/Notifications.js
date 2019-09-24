@@ -1,5 +1,6 @@
 import React from "react";
 import { slidesGeneration } from "../utils/SlidesGenerator"; 
+import { NOTIF_ICON } from "../utils/constants";
 
 const name = "Notifications API";
 const demoName = "notifications";
@@ -12,54 +13,51 @@ const codeSamples = [
   {
     title: "Notifications", 
     code: `
-//Express Server
-const http = require('http').createServer(app);
-const io = require('socket.io')(http);
-
-http.listen(PORT, () => console.log("Server running"));    
+// Request Permissions
+Notification.requestPermission(<cb>);
   `},  
   {
-    title: "Client", 
+    title: "Notifications", 
     code: `
-<script src="/socket.io/socket.io.js"></script>
-<script>
-let socket = io();
-</script>
+// Display Notification
+if (Notification.permission === "granted") {
+  let notification = new Notification("Hello");
+}
   `},
   {
-    title: "Client", 
+    title: "Notifications", 
     code: `
-socket.on("connect", () => {
-  console.log("Connected");
+// With more details
+let notification = new Notification("Hello", {
+  body: "More details on this notification",
+  icon: "http://link.to/image"
 });
-  `},
-  {
-    title: "Client", 
-    code: `
-socket.emit("message", "Hello World!");
-    `},
-  {
-    title: "Client", 
-    code: `
-socket.on("message", msg => {
-  alert(msg);
-});
-    `},
+  `}
 ];
 
 const demo = {
-  demoSocketCb: (msg, ctx) => {
-    console.log("cb", ctx);
-    let lastMessages = ctx.state.lastMessages
-    lastMessages.push(msg);
-    if (lastMessages.length > 5) lastMessages.shift();
-    ctx.setState({
-      lastMessages
-    });
-  },
   render: (ctx) => {
+    let smallNotification = {
+      text: "This is a notification"
+    };
+    let bigNotification = {
+      text: "This is a more complex notification",
+      options: {
+        body: "The body of the message can contain much more information than the title. Browsers will handle this differently but they should at the very leat give you a small sample of this text. If this text is too long, it will be truncated with ellipsis or some browsers will give you the option to expand the full notification so you can see what is hidden in here.",
+        icon: NOTIF_ICON
+      }
+    }
+    const sendSmall = () => {
+      ctx.sendMessage("notification", smallNotification);
+    }
+    const sendLarge = () => {
+      ctx.sendMessage("notification", bigNotification);
+    }
     return (
-      ctx.state.lastMessages.map(m => <p>{m.msg}</p>)
+      <div>
+        <button onClick={sendSmall}>Small Notification</button><br/>
+        <button onClick={sendLarge}>Large Notification</button>
+      </div>
     )
   }
 };

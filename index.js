@@ -22,6 +22,10 @@ io.on("connection", (socket) => {
   socket.on("demo", msg => {
     io.emit("demo", msg);
   });
+
+  socket.on("notification", msg => {
+    io.emit("notification", msg);
+  });
 });
 
 app.get('*', (req,res) =>{

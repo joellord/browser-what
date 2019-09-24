@@ -28,7 +28,9 @@ This is the notifications demo
 </template>
 
 <script type="text/javascript">
-const showTemplate = (name) => {
+let demos = {};
+
+const showTemplate = (name, doNotStart) => {
   let container = document.querySelector("#app");
   while (container.firstChild) {
     container.removeChild(container.firstChild);
@@ -38,14 +40,15 @@ const showTemplate = (name) => {
   var clone = document.importNode(template.content, true);
 
   container.appendChild(clone);
+
+  if (!doNotStart) demos[name].init();
 }
 
 const noDemo = () => {
-  showTemplate("waiting");
+  showTemplate("waiting", true);
 }
 
 noDemo();
-showTemplate("websockets");
 </script>
 
 <script src="/socket.io/socket.io.js"></script>
@@ -65,20 +68,45 @@ showTemplate("websockets");
 
 <script type="text/javascript">
 // WebSockets demo
-let lastMessages = [];
+demos.websockets = {
+  init: () => {
+    let lastMessages = [];
 
-socket.on("demo", data => {
-  lastMessages.push(data.msg.replace("<", "&gt;").replace(">", "&lt;"));
-  if (lastMessages.length > 5) {
-    lastMessages.shift();
+    socket.on("demo", data => {
+      lastMessages.push(data.msg.replace("<", "&gt;").replace(">", "&lt;"));
+      if (lastMessages.length > 5) {
+        lastMessages.shift();
+      }
+      document.querySelector("#lastMessages").innerHTML = lastMessages.join("<br/>");
+    });
+
+    document.querySelector("#wsSend").addEventListener("click", () => {
+      socket.emit("demo", {demo: "ws", msg: document.querySelector("#wsText").value});
+    });
   }
-  document.querySelector("#lastMessages").innerHTML = lastMessages.join("<br/>");
-});
+}
 
-document.querySelector("#wsSend").addEventListener("click", () => {
-  socket.emit("demo", {demo: "ws", msg: document.querySelector("#wsText").value});
-});
+</script>
 
+<script type="text/javascript">
+demos.notifications = {
+  init: () => {
+    if (!Notification.permissions) {
+      Notification.requestPermission(() => {
+        let notification = new Notification("Thank you for accepting those notifications");
+      });
+    }
+
+    socket.on("notification", msg => {
+      let notification = new Notification(msg.text, msg.options);
+    });
+  }
+}
+</script>
+
+<script type="text/javascript">
+
+showTemplate("notifications");
 </script>
 
 </html>
