@@ -63,6 +63,15 @@ Device Orientation Demo <br/>
 </div>
 </template>
 
+<template id="vibrate">
+Vibration API<br/>
+<div id="vibrateName"></div><br/>
+<img id="vibrateImg" src="/darthvader.png" height="50%"/><br/>
+
+<button id="vibrateBtn">Start</button>
+<button id="vibrateStopBtn">Stop</button>
+</template>
+
 <script type="text/javascript">
 let demos = {};
 let currentDemo;
@@ -267,11 +276,57 @@ demos.deviceorientationevent = {
     window.ondeviceorientation = null;
   }
 }
+
+const vibrations = [
+  {
+    name: "Imperial March",
+    img: "/darthvader.png",
+    pattern: []
+  },
+  {
+    name: "Super Mario Theme",
+    img: "/mario.png",
+    pattern: [125,75,125,275,200,275,125,75,125,275,200,600,200,600]
+  },
+  {
+    name: "James Bond 007",
+    img: "/bond.png",
+    pattern: [200,100,200,275,425,100,200,100,200,275,425,100,75,25,75,125,75,25,75,125,100,100]
+  },
+  {
+    name: "SOS Morse Code",
+    img: "/sos.png",
+    pattern: [100,30,100,30,100,200,200,30,200,30,200,200,100,30,100,30,100]
+  }
+];
+
+demos.vibrate = {
+  init: () => {
+    document.querySelector("#vibrateImg").style.visibility = "hidden";
+    document.querySelector("#vibrateStopBtn").addEventListener("click", () => {
+      if ("vibrate" in navigator) {
+        document.querySelector("#vibrateName").innerText = "";
+        document.querySelector("#vibrateImg").style.visibility = "hidden";
+        navigator.vibrate(0);
+      }
+    });
+    document.querySelector("#vibrateBtn").addEventListener("click", () => {
+      if ("vibrate" in navigator) {
+        let vibration = vibrations[Math.round(Math.random()*3)];
+        let img = document.querySelector("#vibrateImg");
+        img.style.visibility = "visible";
+        img.setAttribute("src", vibration.img);
+        document.querySelector("#vibrateName").innerText = vibration.name;
+        navigator.vibrate(vibration.pattern);
+      }
+    });
+  }
+}
 </script>
 
 <script type="text/javascript">
 
-showTemplate("deviceorientationevent");
+showTemplate("vibrate");
 </script>
 
 </html>

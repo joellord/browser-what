@@ -8,6 +8,7 @@ const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 
 app.use(express.static(path.join(__dirname, "./build")));
+app.use(express.static(path.join(__dirname, "./slave/img")));
 
 app.get("/slave", (req, res) => {
   res.sendFile(path.join(__dirname+'/slave/index.html'));

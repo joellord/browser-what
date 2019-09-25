@@ -1,7 +1,7 @@
 import React from 'react';
 
 import DeckOnSteroids from "./components/DeckOnSteroids";
-import { Slide, Title } from "@sambego/diorama";
+import { Slide, Title, List } from "@sambego/diorama";
 import GetReady from "./slides/GetReady";
 
 import WS from "./demos/Websockets";
@@ -11,6 +11,7 @@ import PV from "./demos/PageVisibility";
 import Spk from "./demos/Speech";
 import OnlineOffline from "./demos/Online";
 import DeviceOrientation from "./demos/DeviceOrientation";
+import Vibrate from "./demos/Vibrate";
 
 import './App.css';
 
@@ -18,6 +19,16 @@ function App() {
   return (
     <div className="App">
       <DeckOnSteroids swipeToChange={false}>
+        <Slide>
+          <Title>
+            Joel TODO
+          </Title>
+          <List>
+            <li>Change the Google API key</li>
+            <li>Set Env variables?</li>
+          </List>
+        </Slide>
+
         <Slide>
           <Title>Title</Title>
         </Slide>
@@ -125,6 +136,20 @@ function App() {
 
         <Slide>
           <Title>Interesting, any other mobile sensors we can use?</Title>
+        </Slide>
+
+        {/* Vibrate */}
+        <Vibrate.Title />
+        <Vibrate.Details />
+        <Vibrate.Code1 />
+        <Vibrate.Code2 />
+        <Vibrate.Code3 />
+        <GetReady />
+        <Vibrate.Demo />
+        <Vibrate.Support />
+
+        <Slide>
+          <Title>Meh...</Title>
         </Slide>
 
       </DeckOnSteroids>
