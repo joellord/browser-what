@@ -51,9 +51,12 @@ const demo = {
     });
   },
   render: (ctx) => {
-    navigator.getBattery().then(battery => {
-      ctx.setState({battery});
-    });
+    if (navigator.battery) {
+      // navigator.getBattery().then(battery => {
+        console.log(navigator.battery);
+        ctx.setState({battery: navigator.battery});
+      // });
+    }
 
     return (
       <div>

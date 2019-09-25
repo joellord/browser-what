@@ -49,10 +49,19 @@ Speech API demo <br/>
 </form>
 </template>
 
+<template id="online">
+Online/Offline Status Demo<br/>
+<div style="height: 300px; width: 300px; border-radius: 100%; background-color: green" id="statusBall">
+  <div style="text-align:center; padding-top: 130px; color: white; font-weight: bold;" id="statusText">ONLINE</div>
+</div>
+</template>
+
 <script type="text/javascript">
 let demos = {};
+let currentDemo;
 
 const showTemplate = (name, doNotStart) => {
+  if (demos[currentDemo] && demos[currentDemo].destroy) demos[currentDemo].destroy();
   let container = document.querySelector("#app");
   while (container.firstChild) {
     container.removeChild(container.firstChild);
@@ -64,6 +73,8 @@ const showTemplate = (name, doNotStart) => {
   container.appendChild(clone);
 
   if (!doNotStart) demos[name].init();
+
+  currentDemo = name;
 }
 
 const noDemo = () => {
@@ -77,6 +88,7 @@ noDemo();
 <script>
   let socket = io();
   let socketConnected = false;
+
   socket.on("connect", () => {
     socketConnected = true;
   });
@@ -184,11 +196,32 @@ demos.speechsynthesis = {
     });
   }
 }
+
+handleOnlineChange = () => {
+  if (navigator.onLine) {
+    document.querySelector("#statusBall").style.backgroundColor = "green";
+    document.querySelector("#statusText").innerText = "ONLINE";
+  } else {
+    document.querySelector("#statusBall").style.backgroundColor = "red";
+    document.querySelector("#statusText").innerText = "OFFLINE";
+  }
+}
+
+demos.online = {
+  init: () => {
+    window.ononline = handleOnlineChange;
+    window.onoffline = handleOnlineChange;
+  },
+  destroy: () => {
+    window.ononline = null;
+    window.onoffline = null;
+  }
+}
 </script>
 
 <script type="text/javascript">
 
-showTemplate("speechsynthesis");
+showTemplate("online");
 </script>
 
 </html>
