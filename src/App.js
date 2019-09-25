@@ -9,6 +9,7 @@ import Notif from "./demos/Notifications";
 import Loc from "./demos/Location";
 import PV from "./demos/PageVisibility";
 import Spk from "./demos/Speech";
+import Batt from "./demos/Battery";
 
 import './App.css';
 
@@ -81,6 +82,10 @@ function App() {
         <PV.Demo />
         <PV.Support />
 
+        <Slide>
+          <Title>Ok, but show me some cool stuff!</Title>
+        </Slide>
+
         {/* Speech */}
         <Spk.Title />
         <Spk.Details />
@@ -90,9 +95,20 @@ function App() {
         <GetReady />
         <Spk.Demo />
         <Spk.Support />
+        
         <Slide>
-          <Title>Ok, but show me some cool stuff!</Title>
+          <Title>That's nice and all, but what's the battery usage?</Title>
         </Slide>
+
+        {/* Battery */}
+        <Batt.Title />
+        <Batt.Details />
+        <Batt.Code1 />
+        <Batt.Code2 />
+        <Batt.Code3 />
+        <GetReady />
+        <Batt.Demo />
+        <Batt.Support />
 
       </DeckOnSteroids>
     </div>
