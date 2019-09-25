@@ -12,6 +12,7 @@ import Spk from "./demos/Speech";
 import OnlineOffline from "./demos/Online";
 import DeviceOrientation from "./demos/DeviceOrientation";
 import Vibrate from "./demos/Vibrate";
+import Clipboard from "./demos/Clipboard";
 
 import './App.css';
 
@@ -150,6 +151,34 @@ function App() {
 
         <Slide>
           <Title>Meh...</Title>
+        </Slide>
+
+        {/* Clipboard */}
+        <Clipboard.Title />
+        <Clipboard.Details />
+        <Clipboard.Code1 />
+        <Clipboard.Code2 />
+        <GetReady />
+        <Clipboard.Demo />
+        <Clipboard.Support />
+
+        <Slide>
+          <Title>Now that was useful!</Title>
+        </Slide>
+
+        <Slide>
+          <Title>Deprecated APIs</Title>
+          <List>
+            <li>Battery API</li>
+            <li>Context Menu</li>
+          </List>
+        </Slide>
+
+        <Slide>
+          <Title>Experimental APIs</Title>
+          <List>
+            <li>Ambient Light</li>
+          </List>
         </Slide>
 
       </DeckOnSteroids>

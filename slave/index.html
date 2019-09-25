@@ -72,6 +72,14 @@ Vibration API<br/>
 <button id="vibrateStopBtn">Stop</button>
 </template>
 
+<template id="clipboard">
+Copy & Paste (Clipboard API) demo<br/>
+<button id="copyBtn">Copy</button>
+<button id="pasteBtn">Paste</button>
+<hr/>
+<input type="text" id="clipboardText" value="Some text to copy"/>
+</template>
+
 <script type="text/javascript">
 let demos = {};
 let currentDemo;
@@ -322,11 +330,30 @@ demos.vibrate = {
     });
   }
 }
+
+demos.clipboard = {
+  init: () => {
+    let textBox = document.querySelector("#clipboardText");
+    document.querySelector("#copyBtn").addEventListener("click", () => {
+      navigator.clipboard.writeText(textBox.value).then(_ => {
+      }).catch(e => {
+        console.log("Error", e);
+      });
+    });
+    document.querySelector("#pasteBtn").addEventListener("click", () => {
+      navigator.clipboard.readText().then(data => {
+        textBox.value = data;
+      }).catch(e => {
+        console.log("Error", e);
+      });
+    });
+  }
+}
 </script>
 
 <script type="text/javascript">
 
-showTemplate("vibrate");
+showTemplate("clipboard");
 </script>
 
 </html>
