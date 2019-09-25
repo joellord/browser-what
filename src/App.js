@@ -10,6 +10,7 @@ import Loc from "./demos/Location";
 import PV from "./demos/PageVisibility";
 import Spk from "./demos/Speech";
 import OnlineOffline from "./demos/Online";
+import DeviceOrientation from "./demos/DeviceOrientation";
 
 import './App.css';
 
@@ -111,6 +112,19 @@ function App() {
 
         <Slide>
           <Title>Good! Got anything else useful?</Title>
+        </Slide>
+
+        {/* Device Orientation */}
+        <DeviceOrientation.Title />
+        <DeviceOrientation.Details />
+        <DeviceOrientation.Code1 />
+        <DeviceOrientation.Code2 />
+        <GetReady />
+        <DeviceOrientation.Demo />
+        <DeviceOrientation.Support />
+
+        <Slide>
+          <Title>Interesting, any other mobile sensors we can use?</Title>
         </Slide>
 
       </DeckOnSteroids>

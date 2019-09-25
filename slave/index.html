@@ -56,6 +56,13 @@ Online/Offline Status Demo<br/>
 </div>
 </template>
 
+<template id="deviceorientationevent">
+Device Orientation Demo <br/>
+<div id="room" style="width: 95%; height: 75%; border: solid 3px black; border-radius: 25px;"> 
+  <div id="ball" style="position: relative; height: 50px; width: 50px; border-radius: 100%; background-color: blue;">&nbsp;</div>
+</div>
+</template>
+
 <script type="text/javascript">
 let demos = {};
 let currentDemo;
@@ -217,11 +224,54 @@ demos.online = {
     window.onoffline = null;
   }
 }
+
+demos.deviceorientationevent = {
+  interval: null,
+  init: () => {
+    const MAX_SPEED = 10; //px/cycle
+    const FRAME_RATE = 30;
+    const REDRAW_MS = Math.floor(1000/FRAME_RATE);
+    const BALL_SIZE = 50;
+    const ROOM_HEIGHT = document.querySelector("#room").clientHeight;
+    const ROOM_WIDTH = document.querySelector("#room").clientWidth;
+    let top = 0;
+    let left = 0;
+    let xSpeed = 0;
+    let ySpeed = 0;
+
+    const redraw = () => {
+      top = top + xSpeed;
+      left = left + ySpeed;
+      if (top < 0) top = 0;
+      if (top > ROOM_HEIGHT - BALL_SIZE) top = ROOM_HEIGHT - BALL_SIZE;
+      if (left < 0) left = 0;
+      if (left > ROOM_WIDTH - BALL_SIZE) left = ROOM_WIDTH - BALL_SIZE;
+      document.querySelector("#ball").style.top = top;
+      document.querySelector("#ball").style.left = left;
+    }
+    window.ondeviceorientation = (event) => {
+      let x = event.beta;
+      let y = event.gamma;
+      if (x > 90) x = 90;
+      if (x < -90) x = -90;
+      if (y > 90) y = 90;
+      if (y < -90) y = -90;
+      xSpeed = MAX_SPEED * x/90;
+      ySpeed = MAX_SPEED * y/90;
+    }
+
+    demos.deviceorientationevent.interval = setInterval(redraw, REDRAW_MS);
+  },
+  destroy: () => {
+    clearInterval(demos.deviceorientationevent.interval);
+    window.ondeviceorientation = null;
+  }
+}
 </script>
 
 <script type="text/javascript">
 
-showTemplate("online");
+showTemplate("deviceorientationevent");
 </script>
 
 </html>
