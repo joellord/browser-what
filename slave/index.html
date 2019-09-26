@@ -89,6 +89,7 @@ getUserMedia demo<br/>
   <button id="getUserMediaNoFilter">None</button>
   <button id="getUserMediaBW">B&W</button>
   <button id="getUserMediaInvert">Invert</button>
+  <button id="getUserMediaRandom">Randomize</button>
 </div>
 </template>
 
@@ -375,6 +376,7 @@ demos.getusermedia = {
     document.querySelector("#getUserMediaNoFilter").addEventListener("click", () => currentFilter = "none");
     document.querySelector("#getUserMediaBW").addEventListener("click", () => currentFilter = "blackwhite");
     document.querySelector("#getUserMediaInvert").addEventListener("click", () => currentFilter = "invert");
+    document.querySelector("#getUserMediaRandom").addEventListener("click", () => currentFilter = "randomize");
 
     let pixelManipulation = {
       none: (r, g, b, a) => {
@@ -396,6 +398,14 @@ demos.getusermedia = {
           b,
           a
         };
+      }),
+      randomize: ((r, g, b, a) => {
+        return {
+          r: [r, g, b][Math.round(Math.random()*2)],
+          g: [r, g, b][Math.round(Math.random()*2)],
+          b: [r, g, b][Math.round(Math.random()*2)],
+          a
+        }
       })
     }
 
