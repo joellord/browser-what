@@ -93,6 +93,11 @@ getUserMedia demo<br/>
 </div>
 </template>
 
+<template id="audio">
+Web Audio Demo<br/>
+Turn on the volume and drag your finger around
+</template>
+
 <script type="text/javascript">
 let demos = {};
 let currentDemo;
@@ -445,11 +450,45 @@ demos.getusermedia = {
       .catch(e => console.log(e));
   }
 }
+
+demos.audio = {
+  init: (ctx) => {
+    let audioStarted = false;
+    const start = () => {
+      if (audioStarted) return;
+      audioStarted = true;
+      let audioCtx = new AudioContext();
+      let oscillator = audioCtx.createOscillator();
+      let gainNode = audioCtx.createGain();
+      oscillator.connect(gainNode);
+      gainNode.connect(audioCtx.destination);
+      let maxFreq = 6000;
+      let maxVol = 0.02;
+      let initialFreq = 3000;
+      let initialVol = 0.001;
+      oscillator.detune.value = 100;
+      oscillator.start(0);
+      gainNode.gain.value = initialVol;
+      gainNode.gain.minValue = initialVol;
+      gainNode.gain.maxValue = initialVol;
+
+      const updateAudio = (e) => {
+        oscillator.frequency.value = (e.pageX/window.innerWidth) * maxFreq;
+        gainNode.gain.value = (e.pageY/window.innerHeight) * maxVol;
+      }
+
+      document.onmousemove = updateAudio;
+      document.ontouchmove = updateAudio;
+    }
+    document.onclick = start;
+    document.ontouch = start;
+  }
+}
 </script>
 
 <script type="text/javascript">
 
-showTemplate("getusermedia");
+showTemplate("audio");
 </script>
 
 </html>
