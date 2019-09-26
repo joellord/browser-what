@@ -35,6 +35,7 @@ const slidesGeneration = (name, demoName, details, codeSamples, demo) => {
     }
 
     componentWillUnmount() {
+      if (demo.destroy) demo.destroy(this);
       realtime.unsubscribeDemo(this.handleMessage);
     }
 

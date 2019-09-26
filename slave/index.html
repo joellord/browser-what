@@ -80,6 +80,18 @@ Copy & Paste (Clipboard API) demo<br/>
 <input type="text" id="clipboardText" value="Some text to copy"/>
 </template>
 
+<template id="getusermedia">
+getUserMedia demo<br/>
+<video id="getUserMediaVideo" style="display: none;"></video>
+<canvas id="getUserMediaCanvas"></canvas>
+<div>
+  Filters: 
+  <button id="getUserMediaNoFilter">None</button>
+  <button id="getUserMediaBW">B&W</button>
+  <button id="getUserMediaInvert">Invert</button>
+</div>
+</template>
+
 <script type="text/javascript">
 let demos = {};
 let currentDemo;
@@ -349,11 +361,85 @@ demos.clipboard = {
     });
   }
 }
+
+demos.getusermedia = {
+  init: () => {
+    let constraints = { video: true };
+    let canvas = document.querySelector("#getUserMediaCanvas");
+    let backCanvas = document.createElement("canvas");
+    let video = document.querySelector("#getUserMediaVideo");
+    let context = canvas.getContext("2d");
+    let backContext = backCanvas.getContext("2d");
+
+    let currentFilter = "none";
+    document.querySelector("#getUserMediaNoFilter").addEventListener("click", () => currentFilter = "none");
+    document.querySelector("#getUserMediaBW").addEventListener("click", () => currentFilter = "blackwhite");
+    document.querySelector("#getUserMediaInvert").addEventListener("click", () => currentFilter = "invert");
+
+    let pixelManipulation = {
+      none: (r, g, b, a) => {
+        return {r, g, b, a}
+      },
+      blackwhite: ((r, g, b, a) => {
+        let brightness = (3*r+4*g+b)>>>3;
+        return {
+          r: brightness,
+          g: brightness,
+          b: brightness,
+          a
+        };
+      }),
+      invert: ((r, g, b, a) => {
+        return {
+          r: g,
+          g: r,
+          b,
+          a
+        };
+      })
+    }
+
+    navigator.mediaDevices.getUserMedia(constraints)
+      .then(mediaStream => {
+        video.srcObject = mediaStream;
+        video.onloadedmetadata = () => {
+          video.play();
+
+          let WIDTH = video.videoWidth;
+          let HEIGHT = video.videoHeight;
+          canvas.height = HEIGHT;
+          backCanvas.height = HEIGHT;
+          canvas.width = WIDTH;
+          backCanvas.width = WIDTH;
+
+          let loop = () => {
+            if (!video.paused && !video.ended) {
+              backContext.drawImage(video, 0, 0); 
+              let imageData = backContext.getImageData(0, 0, WIDTH, HEIGHT);
+              let data = imageData.data;
+              for (let i = 0; i < data.length; i+= 4) {
+                let result = pixelManipulation[currentFilter](data[i], data[i+1], data[i+2], data[i+3]);
+                data[i] = result.r;
+                data[i+1] = result.g;
+                data[i+2] = result.b;
+                data[i+3] = result.a;
+              }
+              imageData.data = data;
+              context.putImageData(imageData, 0, 0);
+              setTimeout(loop, 1000/30);
+            }
+          }
+          loop();
+        };  
+      })
+      .catch(e => console.log(e));
+  }
+}
 </script>
 
 <script type="text/javascript">
 
-showTemplate("clipboard");
+showTemplate("getusermedia");
 </script>
 
 </html>

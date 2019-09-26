@@ -13,6 +13,7 @@ import OnlineOffline from "./demos/Online";
 import DeviceOrientation from "./demos/DeviceOrientation";
 import Vibrate from "./demos/Vibrate";
 import Clipboard from "./demos/Clipboard";
+import UM from "./demos/UserMedia";
 
 import './App.css';
 
@@ -164,6 +165,29 @@ function App() {
 
         <Slide>
           <Title>Now that was useful!</Title>
+        </Slide>
+
+        {/* getUserMedia */}
+        <UM.Title />
+        <UM.Details />
+        <UM.Code1 />
+        <UM.Code2 />
+        <UM.Code3 />
+        <GetReady />
+        <UM.Demo />
+        <UM.Support />
+
+        <Slide>
+          <Title>Wah!</Title>
+        </Slide>
+
+        <Slide>
+          <Title>APIs To Add</Title>
+          <List>
+            <li>Audio processing (on getUserMedia audio)</li>
+            <li>Gamepad API</li>
+            <li>Bluetooth API</li>
+          </List>
         </Slide>
 
         <Slide>
