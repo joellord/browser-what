@@ -95,7 +95,9 @@ getUserMedia demo<br/>
 
 <template id="audio">
 Web Audio Demo<br/>
-Turn on the volume and drag your finger around
+Turn on the volume and drag your finger around<br/>
+Position (x, y): <span id="audioPosition"></span><br/>
+Frequency: <span id="audioFreq"></span>, Gain: <span id="audioGain"></span>
 </template>
 
 <script type="text/javascript">
@@ -463,7 +465,7 @@ demos.audio = {
       oscillator.connect(gainNode);
       gainNode.connect(audioCtx.destination);
       let maxFreq = 6000;
-      let maxVol = 0.02;
+      let maxVol = 0.04;
       let initialFreq = 3000;
       let initialVol = 0.001;
       oscillator.detune.value = 100;
@@ -473,8 +475,13 @@ demos.audio = {
       gainNode.gain.maxValue = initialVol;
 
       const updateAudio = (e) => {
-        oscillator.frequency.value = (e.pageX/window.innerWidth) * maxFreq;
-        gainNode.gain.value = (e.pageY/window.innerHeight) * maxVol;
+        let freq = (e.pageX/window.innerWidth) * maxFreq;
+        let gain = (e.pageY/window.innerHeight) * maxVol;
+        oscillator.frequency.value = freq;
+        gainNode.gain.value = gain;
+        document.querySelector("#audioPosition").innerText = `(${e.pageX}, ${e.pageY})/(${window.innerWidth}, ${window.innerHeight})`;
+        document.querySelector("#audioFreq").innerText = Math.floor(freq);
+        document.querySelector("#audioGain").innerText = gain;
       }
 
       document.onmousemove = updateAudio;
