@@ -14,6 +14,7 @@ import DeviceOrientation from "./demos/DeviceOrientation";
 import Vibrate from "./demos/Vibrate";
 import Clipboard from "./demos/Clipboard";
 import UM from "./demos/UserMedia";
+import Audio from "./demos/Audio";
 
 import './App.css';
 
@@ -181,10 +182,23 @@ function App() {
           <Title>Wah!</Title>
         </Slide>
 
+        {/* Audio */}
+        <Audio.Title />
+        <Audio.Details />
+        <Audio.Code1 />
+        <Audio.Code2 />
+        <Audio.Code3 />
+        <GetReady />
+        <Audio.Demo />
+        <Audio.Support />
+
+        <Slide>
+          <Title>Make the sounds stop!</Title>
+        </Slide>
+
         <Slide>
           <Title>APIs To Add</Title>
           <List>
-            <li>Audio processing (on getUserMedia audio)</li>
             <li>Gamepad API</li>
             <li>Bluetooth API</li>
           </List>

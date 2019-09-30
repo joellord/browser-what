@@ -1,6 +1,5 @@
 import React from "react";
 import { slidesGeneration } from "../utils/SlidesGenerator"; 
-import { isAbsolute } from "path";
 
 const name = "getUserMedia API";
 const demoName = "getusermedia";
