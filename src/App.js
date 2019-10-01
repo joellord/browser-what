@@ -46,6 +46,7 @@ function App() {
 
         <Slide>
           <Title>Connect to the App</Title>
+          <Title>http://ezurl.to/browser-what</Title>
         </Slide>
 
         {/* WebSockets */}
