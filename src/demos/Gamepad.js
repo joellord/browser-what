@@ -68,7 +68,7 @@ const demo = {
       score: 0,
       gamepadBtnA: false,
       gamepadBtnB: false,
-      gamedadBtnRight: false,
+      gamepadBtnRight: false,
       gamepadBtnLeft: false,
       gamepadBtnUp: false,
       gamepadBtnDown: false,
@@ -127,14 +127,28 @@ const demo = {
       ctx.setState({score: ctx.state.score + 1});
     }
     const gameLoop = () => {
-      ctx.setState({
-        gamepadBtnA: gamepad.buttons[0].pressed,
-        gamepadBtnB: gamepad.buttons[1].pressed,
-        gamepadBtnRight: gamepad.axes[6] === 1,
-        gamepadBtnLeft: gamepad.axes[6] === -1,
-        gamepadBtnUp: gamepad.axes[7] === -1,
-        gamepadBtnDown: gamepad.axes[7] === 1
-      });
+      if (navigator.userAgent.indexOf("Chrome") > -1) {
+        // Chrome
+        gamepad = navigator.getGamepads()[0];
+        ctx.setState({
+          gamepadBtnA: gamepad.buttons[0].pressed,
+          gamepadBtnB: gamepad.buttons[1].pressed,
+          gamepadBtnRight: gamepad.buttons[15].pressed,
+          gamepadBtnLeft: gamepad.buttons[14].pressed,
+          gamepadBtnUp: gamepad.buttons[12].pressed,
+          gamepadBtnDown: gamepad.buttons[13].pressed
+        });
+      } else {
+        // Mozilla
+        ctx.setState({
+          gamepadBtnA: gamepad.buttons[0].pressed,
+          gamepadBtnB: gamepad.buttons[1].pressed,
+          gamepadBtnRight: gamepad.axes[6] === 1,
+          gamepadBtnLeft: gamepad.axes[6] === -1,
+          gamepadBtnUp: gamepad.axes[7] === -1,
+          gamepadBtnDown: gamepad.axes[7] === 1
+        });
+      }
       if (canCreateTorpedo) {
         if (ctx.state.gamepadBtnUp) fireTorpedo(0);
         if (ctx.state.gamepadBtnDown) fireTorpedo(1);
