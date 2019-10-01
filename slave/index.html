@@ -99,6 +99,19 @@ Turn on the volume and move your mouse or tap around the screen<br/>
 Frequency: <span id="audioFreq"></span>, Gain: <span id="audioGain"></span>
 </template>
 
+<template id="gamepad">
+Gamepad API<br/>
+<div id="gamepadPleaseWait" style="display: none">Please wait a second</div>
+<div id="gamepadPlay">
+  <button class="gamepadBtn" id="up">UP</button>
+  <button class="gamepadBtn" id="down">DOWN</button>
+  <button class="gamepadBtn" id="left">LEFT</button>
+  <button class="gamepadBtn" id="right">RIGHT</button>
+  <button class="gamepadBtn" id="a">A</button>
+  <button class="gamepadBtn" id="b">B</button>
+</div>
+</template>
+
 <script type="text/javascript">
 let demos = {};
 let currentDemo;
@@ -496,11 +509,33 @@ demos.audio = {
     document.ontouch = start;
   }
 }
+
+demos.gamepad = {
+  init: () => {
+    let delay = 1000;
+    const pleaseWait = () => {
+      document.querySelector("#gamepadPleaseWait").style.display = "inherit";
+      document.querySelector("#gamepadPlay").style.display = "none";
+    }
+    const play = () => {
+      document.querySelector("#gamepadPleaseWait").style.display = "none";
+      document.querySelector("#gamepadPlay").style.display = "inherit";
+    }
+    let buttons = document.querySelectorAll(".gamepadBtn");
+    for (let i = 0; i < buttons.length; i++) {
+      buttons[i].addEventListener("click", (e) => {
+        pleaseWait();
+        socket.emit("demo", {name: "gamepad", button: e.target.id});
+        setTimeout(play, delay);
+      });
+    }
+  }
+}
 </script>
 
 <script type="text/javascript">
 
-showTemplate("audio");
+showTemplate("gamepad");
 </script>
 
 </html>

@@ -15,6 +15,7 @@ import Vibrate from "./demos/Vibrate";
 import Clipboard from "./demos/Clipboard";
 import UM from "./demos/UserMedia";
 import Audio from "./demos/Audio";
+import Gamepad from "./demos/Gamepad";
 
 import './App.css';
 
@@ -195,6 +196,15 @@ function App() {
         <Slide>
           <Title>Make the sounds stop!</Title>
         </Slide>
+
+        {/* Gamepad */}
+        <Gamepad.Title />
+        <Gamepad.Details />
+        <Gamepad.Code1 />
+        <Gamepad.Code2 />
+        <GetReady />
+        <Gamepad.Demo />
+        <Gamepad.Support />
 
         <Slide>
           <Title>APIs To Add</Title>

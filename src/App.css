@@ -20,3 +20,27 @@
 .App-link {
   color: #09d3ac;
 }
+
+.gamepadGame td div {
+  text-align: center;
+}
+
+.gamepadGame .missile {
+  font-size: 2em;
+  font-weight: bolder;
+  position: relative;
+  top: 0px;
+}
+.gamepadGame .missile:before {
+  content: "^";
+}
+
+.gamepadGame .torpedo {
+  font-size: 2em;
+  font-weight: bolder;
+  position: relative;
+  top: 0px;
+}
+.gamepadGame .torpedo:before {
+  content: "v";
+}
