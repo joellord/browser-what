@@ -14,6 +14,8 @@ app.get("/slave", (req, res) => {
   res.sendFile(path.join(__dirname+'/slave/index.html'));
 });
 
+app.use('/.well-known/acme-challenge/', express.static(__dirname + '/challenges'));
+
 io.on("connection", (socket) => {
   socket.on("demoChange", msg => {
     // Echo message to connected clients
