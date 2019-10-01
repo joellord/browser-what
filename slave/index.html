@@ -3,6 +3,20 @@
   <title>My Browser Does What?</title>
 </head>
 
+<style>
+
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+@-webkit-keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+</style>
+
 <body>
   <h1>My Browser Does What?</title>
   <h3>iJS - Munich - Oct 2019</h3>
@@ -109,6 +123,14 @@ Gamepad API<br/>
   <button class="gamepadBtn" id="right">RIGHT</button>
   <button class="gamepadBtn" id="a">A</button>
   <button class="gamepadBtn" id="b">B</button>
+</div>
+</template>
+
+<template id="bluetooth">
+Bluetooth API<br/>
+<div>
+  <span id="heart">💓</span>
+  <span id="heartRate"></span>
 </div>
 </template>
 
@@ -531,11 +553,22 @@ demos.gamepad = {
     }
   }
 }
+
+demos.bluetooth = {
+  init: () => {
+    socket.on("demo", msg => {
+      if (msg.name !== "bluetooth") return;
+      document.querySelector("#heartRate").innerText = msg.heartRate;
+      let blinkAnimation = `blink-animation 1s steps(5, start) infinite`;
+      document.querySelector("#heart").style.animation = blinkAnimation;
+    });
+  }
+}
 </script>
 
 <script type="text/javascript">
 
-showTemplate("gamepad");
+showTemplate("bluetooth");
 </script>
 
 </html>

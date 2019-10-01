@@ -1,8 +1,9 @@
 import React from 'react';
 
 import DeckOnSteroids from "./components/DeckOnSteroids";
-import { Slide, Title, List } from "@sambego/diorama";
+import { Slide, Title, List, Text, Image } from "@sambego/diorama";
 import GetReady from "./slides/GetReady";
+import ThankYou from "./slides/ThankYou";
 
 import WS from "./demos/Websockets";
 import Notif from "./demos/Notifications";
@@ -16,8 +17,10 @@ import Clipboard from "./demos/Clipboard";
 import UM from "./demos/UserMedia";
 import Audio from "./demos/Audio";
 import Gamepad from "./demos/Gamepad";
+import Bluetooth from "./demos/Bluetooth";
 
 import './App.css';
+import ImgBye from "./assets/bye.gif";
 
 function App() {
   return (
@@ -207,11 +210,20 @@ function App() {
         <Gamepad.Support />
 
         <Slide>
-          <Title>APIs To Add</Title>
-          <List>
-            <li>Gamepad API</li>
-            <li>Bluetooth API</li>
-          </List>
+          <Title>That was fun!</Title>
+        </Slide>
+
+        {/* Bluetooth API */}
+        <Bluetooth.Title />
+        <Bluetooth.Details />
+        <Bluetooth.Code1 />
+        <Bluetooth.Code2 />
+        <GetReady />
+        <Bluetooth.Demo />
+        <Bluetooth.Support />
+
+        <Slide>
+          <Title>So cool!</Title>
         </Slide>
 
         <Slide>
@@ -228,6 +240,31 @@ function App() {
             <li>Ambient Light</li>
           </List>
         </Slide>
+
+
+        <Slide>
+          <Title>In Summary</Title>
+          <List>
+            <li>A lot of APIs are available</li>
+            <li>Ultimately, we might build fully native apps in the browser</li>
+            <li>Explore and have fun</li>
+          </List>
+        </Slide>
+
+        <Slide>
+          <Title>Resources</Title>
+          <Text>Here are some resources</Text>
+          <List>
+            <li><a href="https://developer.mozilla.org/">MDN</a></li>
+            <li><a href="https://caniuse.com/">Can I Use</a></li>
+          </List>
+        </Slide>
+
+        <Slide>
+          <Image src={ImgBye} full />
+        </Slide>
+
+        <ThankYou />
 
       </DeckOnSteroids>
     </div>
