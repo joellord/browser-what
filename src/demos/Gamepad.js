@@ -6,7 +6,7 @@ const demoName = "gamepad";
 const details = [
   "Processes input from a USB connected gamepad",
   "Great for games or funky navigation in your app",
-  "Event based API"
+  "Buttons and axes are different per browser"
 ];
 const codeSamples = [
   {
