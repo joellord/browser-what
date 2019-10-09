@@ -51,7 +51,7 @@ Geolocation API demo<br/>
 
 <template id="pagevisibility">
 Page Visibility demo <br/>
-Page is visible 😉<br/>
+Page is <span id="pagevisibilityStatus">visible 😉</span><br/>
 Look at the page title
 </template>
 
@@ -246,12 +246,15 @@ demos.pagevisibility = {
       switch (document.visibilityState) {
         case "visible": 
           document.title = "My Browser Does What?";
+          document.querySelector("#pagevisibilityStatus").innerText = "visible 😉";
           break;
         case "hidden":
           document.title = "(Page Hidden) - My Browser Does What?";
+          document.querySelector("#pagevisibilityStatus").innerText = "not visible";
           break;
         case "prerender":
-          document.title = "(Page Rendering) - My Browser Does What?"
+          document.title = "(Page Rendering) - My Browser Does What?";
+          document.querySelector("#pagevisibilityStatus").innerText = "RENDERING";
           break;
       }
     });
@@ -584,7 +587,7 @@ demos.bluetooth = {
 <script type="text/javascript">
 
 // showTemplate("waiting", true);
-showTemplate("location");
+showTemplate("pagevisibility");
 </script>
 
 </html>
