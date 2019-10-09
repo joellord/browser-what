@@ -226,7 +226,14 @@ demos.location = {
     document.querySelector("#locationBtn").addEventListener("click", () => {
       if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(pos => {
-          document.querySelector("#location").innerText = `You are located at ${pos.coords.latitude}, ${pos.coords.longitude}`;
+          const mapUrl = `https://www.google.com/maps/@${pos.coords.latitude},${pos.coords.longitude},17z`;
+          document.querySelector("#location").innerText = `You are located at ${pos.coords.latitude}, ${pos.coords.longitude}  `;
+          let link = document.createElement("a");
+          link.setAttribute("href", mapUrl);
+          link.innerText = "(View on Google Maps)";
+          let paragraph = document.createElement("p");
+          paragraph.appendChild(link);
+          document.querySelector("#location").appendChild(paragraph);
         });
       }
     });
@@ -577,7 +584,7 @@ demos.bluetooth = {
 <script type="text/javascript">
 
 // showTemplate("waiting", true);
-showTemplate("notifications");
+showTemplate("location");
 </script>
 
 </html>

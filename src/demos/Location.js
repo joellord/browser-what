@@ -3,7 +3,7 @@ import { slidesGeneration } from "../utils/SlidesGenerator";
 import { GOOGLE_MAPS_API_KEY } from "../utils/constants";
 
 const name = "Geolocation API";
-const demoName = "geolocation";
+const demoName = "location";
 const details = [
   "Returns the position of the user in lat/long",
   "You can also track movement",
@@ -41,13 +41,18 @@ const demo = {
   init: (ctx) => {
     navigator.geolocation.getCurrentPosition(pos => {
       ctx.setState({pos, soWhat: true});
+      const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${pos.coords.latitude},${pos.coords.longitude}&sensor=true&key=${GOOGLE_MAPS_API_KEY}`;
+      fetch(url).then(resp => resp.json()).then(data => {
+        console.log(data);
+        ctx.setState({city: "Munich"})
+      });
     });
   },
   render: (ctx) => {
     let position = ctx.state.pos ? ctx.state.pos.coords : {latitude: 0, longitude: 0};
     
     const showCity = () => {
-      ctx.setState({city: true});
+      ctx.setState({showCity: true});
     }
     const showImage = () => {
       ctx.setState({image: `https://maps.googleapis.com/maps/api/staticmap?center=${position.latitude},${position.longitude}&zoom=19&maptype=satellite&size=400x400&key=${GOOGLE_MAPS_API_KEY}`});
@@ -59,9 +64,9 @@ const demo = {
         {ctx.state.soWhat && 
         <div><button onClick={showCity}>So what?</button></div>
         }
-        {ctx.state.city && 
+        {ctx.state.showCity && 
         <div>
-          Looks like you are in Munich<br/>
+          Looks like you are in {ctx.state.city}<br/>
           <button onClick={showImage}>Meh...</button>
         </div>
         }
