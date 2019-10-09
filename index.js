@@ -4,7 +4,7 @@ const path = require("path");
 const PORT = process.env.PORT || 8888;
 
 const app = express();
-const http = require('http').createServer(app);
+const http = require("http").createServer(app);
 const io = require('socket.io')(http);
 
 app.use(express.static(path.join(__dirname, "./build")));
@@ -13,6 +13,10 @@ app.use(express.static(path.join(__dirname, "./slave/img")));
 app.get("/slave", (req, res) => {
   res.sendFile(path.join(__dirname+'/slave/index.html'));
 });
+
+app.get("/slave/sw", (req, res) => {
+  res.sendFile(path.join(__dirname + "/slave/sw.js"));
+})
 
 app.use('/.well-known/acme-challenge/', express.static(__dirname + '/challenges'));
 
@@ -27,6 +31,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("notification", msg => {
+    console.log(msg);
     io.emit("notification", msg);
   });
 });

@@ -38,7 +38,9 @@ This is the Websockets demo<br/>
 </template>
 
 <template id="notifications">
-This is the notifications demo
+This is the notifications demo<br/>
+<button id="notificationsBtn">Listen for notifications</button>
+<div id="notificationsStatus"></div>
 </template>
 
 <template id="location">
@@ -201,15 +203,21 @@ demos.websockets = {
 
 demos.notifications = {
   init: () => {
-    if (!Notification.permissions) {
+    document.querySelector("#notificationsBtn").addEventListener("click", () => {
       Notification.requestPermission(() => {
-        let notification = new Notification("Thank you for accepting those notifications");
+        if (navigator.serviceWorker) {
+          navigator.serviceWorker.register("slave/sw").then(registration => {
+            registration.showNotification("You will now receive notifications");
+            socket.on("notification", msg => {
+              registration.showNotification(msg.text, msg.options);
+            });
+          }, err => console.log("Cannot register notifications sw", err));
+        } else {
+          let notification = new Notification("Thank you for accepting those notifications");
+        }
       });
-    }
-
-    socket.on("notification", msg => {
-      let notification = new Notification(msg.text, msg.options);
     });
+    document.querySelector("#notificationsStatus").innerText = `Waiting on user, current permission: ${Notification.permission}`;
   }
 };
 
@@ -568,7 +576,8 @@ demos.bluetooth = {
 
 <script type="text/javascript">
 
-showTemplate("waiting", true);
+// showTemplate("waiting", true);
+showTemplate("notifications");
 </script>
 
 </html>

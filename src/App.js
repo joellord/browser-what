@@ -33,6 +33,7 @@ function App() {
           <List>
             <li>Change the Google API key</li>
             <li>Set Env variables?</li>
+            <li>Change the socket server in Realtime.js</li>
           </List>
         </Slide>
 
