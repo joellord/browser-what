@@ -74,7 +74,7 @@ Online/Offline Status Demo<br/>
 
 <template id="deviceorientationevent">
 Device Orientation Demo <br/>
-<div id="room" style="width: 95%; height: 75%; border: solid 3px black; border-radius: 25px;"> 
+<div id="room" style="text-align: center; width: 95%; height: 50%; border: solid 3px black; border-radius: 25px;"> 
   <div id="ball" style="position: relative; height: 50px; width: 50px; border-radius: 100%; background-color: blue;">&nbsp;</div>
 </div>
 </template>
@@ -318,7 +318,7 @@ demos.online = {
 demos.deviceorientationevent = {
   interval: null,
   init: () => {
-    const MAX_SPEED = 10; //px/cycle
+    const MAX_SPEED = 20; //px/cycle
     const FRAME_RATE = 30;
     const REDRAW_MS = Math.floor(1000/FRAME_RATE);
     const BALL_SIZE = 50;
