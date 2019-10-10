@@ -15,27 +15,34 @@ app.use(express.static(path.join(__dirname, "./build")));
 app.use(express.static(path.join(__dirname, "./slave/img")));
 
 app.get("/slave", (req, res) => {
+  console.info("Someone requested the slave");
   res.sendFile(path.join(__dirname+'/slave/index.html'));
 });
 
 app.get("/slave/sw", (req, res) => {
+  console.info("Service worker requested");
   res.sendFile(path.join(__dirname + "/slave/sw.js"));
 });
 
 app.get("/googleImage", (req, res) => {
+  console.info("Requested the static map image");
   const url = `https://maps.googleapis.com/maps/api/staticmap?center=${req.query.lat},${req.query.lng}&zoom=19&maptype=satellite&size=400x400&key=${GOOGLE_APIKEY}`;
+  console.log("Requesting", url);
   https.get(url, (resp) => {
+    console.log("Received", resp);
     const stream = require("stream");
     const ps = new stream.PassThrough();
     stream.pipeline(resp, ps, err => console.log(err));
     ps.pipe(res);
   }).on("error", (err) => {
-    console.log("Error fetching map: " + err.message);
+    console.error("Error fetching map: " + err.message);
   });
 });
 
 app.get("/findCity", (req, res) => {
+  console.info("Requested a reverse geocoding");
   const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${req.query.lat},${req.query.lng}&key=${GOOGLE_APIKEY}`
+  console.log("Requesting ", url);
   https.get(url, resp => {
     let data = "";
     resp.on("data", chunk => {
@@ -43,6 +50,7 @@ app.get("/findCity", (req, res) => {
     });
     resp.on("end", _ => {
       data = JSON.parse(data);
+      console.log("Got response", data);
       let city = {};
       if (data && data.results && data.results.length >= 1 && data.results[0].address_components) {
         city = data.results[0].address_components.find(a => a.types[0] === "locality");
@@ -52,6 +60,7 @@ app.get("/findCity", (req, res) => {
         console.log("Using process.env.CITY || Munich");
         city = {long_name: process.env.CITY || "Munich"};
       }
+      console.log("Sending city", city);
       res.send(city).status(200);
     });
   });
