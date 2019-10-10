@@ -158,6 +158,7 @@ const demo = {
         if (ctx.state.gamepadBtnB) fireTorpedo(5);
       }
       let row = document.querySelector("#missiles");
+      if (!row) return;
       let height = row.getAttribute("height");
       missiles.map((m, index) => {
         if (!m.style.top) m.style.top = "0px";
