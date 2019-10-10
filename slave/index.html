@@ -82,10 +82,11 @@ Device Orientation Demo <br/>
 <template id="vibrate">
 Vibration API<br/>
 <div id="vibrateName"></div><br/>
-<img id="vibrateImg" src="/darthvader.png" height="50%"/><br/>
 
 <button id="vibrateBtn">Start</button>
 <button id="vibrateStopBtn">Stop</button>
+<br/>
+<img id="vibrateImg" height="50%"/><br/>
 </template>
 
 <template id="clipboard">
@@ -383,11 +384,11 @@ const vibrations = [
 
 demos.vibrate = {
   init: () => {
-    document.querySelector("#vibrateImg").style.visibility = "hidden";
+    document.querySelector("#vibrateImg").style.visibility = "none";
     document.querySelector("#vibrateStopBtn").addEventListener("click", () => {
       if ("vibrate" in navigator) {
         document.querySelector("#vibrateName").innerText = "";
-        document.querySelector("#vibrateImg").style.visibility = "hidden";
+        document.querySelector("#vibrateImg").style.visibility = "none";
         navigator.vibrate(0);
       }
     });
@@ -395,10 +396,12 @@ demos.vibrate = {
       if ("vibrate" in navigator) {
         let vibration = vibrations[Math.round(Math.random()*3)];
         let img = document.querySelector("#vibrateImg");
-        img.style.visibility = "visible";
         img.setAttribute("src", vibration.img);
+        img.style.visibility = "visible";
         document.querySelector("#vibrateName").innerText = vibration.name;
-        navigator.vibrate(vibration.pattern);
+        setTimeout(navigator.vibrate(vibration.pattern), 0);
+      } else {
+        document.querySelector("#vibrateName").innerText = "Vibration API not available on this device";
       }
     });
   }
@@ -588,7 +591,7 @@ demos.bluetooth = {
 <script type="text/javascript">
 
 // showTemplate("waiting", true);
-showTemplate("speechsynthesis");
+showTemplate("vibrate");
 </script>
 
 </html>
