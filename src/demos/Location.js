@@ -1,6 +1,5 @@
 import React from "react";
 import { slidesGeneration } from "../utils/SlidesGenerator"; 
-import { GOOGLE_MAPS_API_KEY } from "../utils/constants";
 
 const name = "Geolocation API";
 const demoName = "location";
@@ -41,10 +40,9 @@ const demo = {
   init: (ctx) => {
     navigator.geolocation.getCurrentPosition(pos => {
       ctx.setState({pos, soWhat: true});
-      const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${pos.coords.latitude},${pos.coords.longitude}&sensor=true&key=${GOOGLE_MAPS_API_KEY}`;
+      const url = `/findCity?lat=${pos.coords.latitude}&lng=${pos.coords.longitude}`;
       fetch(url).then(resp => resp.json()).then(data => {
-        console.log(data);
-        ctx.setState({city: "Munich"})
+        ctx.setState({city: data.long_name})
       });
     });
   },
@@ -55,7 +53,7 @@ const demo = {
       ctx.setState({showCity: true});
     }
     const showImage = () => {
-      ctx.setState({image: `https://maps.googleapis.com/maps/api/staticmap?center=${position.latitude},${position.longitude}&zoom=19&maptype=satellite&size=400x400&key=${GOOGLE_MAPS_API_KEY}`});
+      ctx.setState({image: `/googleImage/?lat=${position.latitude}&lng=${position.longitude}`});
     }
 
     return (

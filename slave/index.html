@@ -590,8 +590,11 @@ demos.bluetooth = {
 
 <script type="text/javascript">
 
-// showTemplate("waiting", true);
-showTemplate("vibrate");
+showTemplate("waiting", true);
+let params = {};
+const urlParams = new URLSearchParams(window.location.search);
+const template = urlParams.get('template');
+if (template) showTemplate(template);
 </script>
 
 </html>

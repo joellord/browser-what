@@ -5,8 +5,7 @@ class Realtime extends Emitter {
 
   constructor() {
     super();
-
-    const server = "http://localhost:8888" //window.location.origin;
+    const server = window.location.origin;
     this.socket = openSocket(server);
 
     this.socket.on("connect", () => {
