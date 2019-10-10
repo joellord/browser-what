@@ -28,7 +28,19 @@ synth.speak(utt);
 let voice = synth.getVoices()[1];
 utt.voice = voice;
 synth.speak(utt);
+
+speechSynthesis.onvoicechange = populateVoices();
   `}
+];
+
+const speechLines = [
+  {text: "I love this part of the talk."},
+  {text: "I can actually take a break here."},
+  {text: "Note how the pitch and rate are different now.", rate: 0.6, pitch: 1.8},
+  {text: "Even better, it can change voice"},
+  {text: "It can speak French. Although it does not support French Canadian yet.", lang: "fr"},
+  {text: "And a variety of different languages like German. Danke schön!", lang: "de"},
+  {text: "But enough of this nonsense, back to you, Joel"}
 ];
 
 const demo = {
@@ -37,26 +49,12 @@ const demo = {
   },
   render: (ctx) => {
     const talk = () => {
+      let speech = speechLines.length ? speechLines.shift() : {text: "I have nothing else to say"};
       let synth = speechSynthesis;
-      let utterance = new SpeechSynthesisUtterance("I love this part of the talk.");
-      synth.speak(utterance);
-      utterance = new SpeechSynthesisUtterance("I can actually take a break here.");
-      synth.speak(utterance);
-      utterance = new SpeechSynthesisUtterance("Note how the pitch and rate are different now.");
-      utterance.rate = 0.6;
-      utterance.pitch = 1.8;
-      synth.speak(utterance);
-      utterance = new SpeechSynthesisUtterance("Even better, it can change voice");
-      synth.speak(utterance);
-      synth.pause();
-      utterance = new SpeechSynthesisUtterance("It can speak French. Although it does not support French Canadian yet.");
-      utterance.voice = synth.getVoices().find(v => v.lang.indexOf("fr") > -1);
-      synth.speak(utterance);
-      synth.resume();
-      utterance = new SpeechSynthesisUtterance("And a variety of different languages like German. Danke schön!");
-      utterance.voice = synth.getVoices().find(v => v.lang.indexOf("de") > -1);
-      synth.speak(utterance);
-      utterance = new SpeechSynthesisUtterance("But enough of this nonsense, back to you, Joel");
+      let utterance = new SpeechSynthesisUtterance(speech.text);
+      if (speech.rate) utterance.rate = speech.rate;
+      if (speech.pitch) utterance.pitch = speech.pitch;
+      if (speech.lang) utterance.voice = synth.getVoices().find(v => v.lang.indexOf(speech.lang) > -1);
       synth.speak(utterance);
     };
 

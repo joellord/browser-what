@@ -281,6 +281,7 @@ demos.speechsynthesis = {
       });
     }
     populateVoiceList();
+    speechSynthesis.onvoiceschanged = populateVoiceList;
 
     document.querySelector("#speak").addEventListener("click", () => {
       let utterThis = new SpeechSynthesisUtterance(inputTxt.value);
@@ -587,7 +588,7 @@ demos.bluetooth = {
 <script type="text/javascript">
 
 // showTemplate("waiting", true);
-showTemplate("pagevisibility");
+showTemplate("speechsynthesis");
 </script>
 
 </html>
