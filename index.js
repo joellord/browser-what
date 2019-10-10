@@ -42,7 +42,14 @@ app.get("/findCity", (req, res) => {
     });
     resp.on("end", _ => {
       data = JSON.parse(data);
-      const city = data.results[0].address_components.find(a => a.types[0] === "locality");
+      if (data && data.results && data.results.length >= 1 && data.results[0].address_components) {
+        const city = data.results[0].address_components.find(a => a.types[0] === "locality");
+      } else {
+        console.log("City not found");
+        console.log("Data: ", data);
+        console.log("Using process.env.CITY || Munich");
+        const city = {long_name: process.env.CITY || "Munich"};
+      }
       res.send(city).status(200);
     });
   });
