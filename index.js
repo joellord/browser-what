@@ -31,7 +31,6 @@ io.on("connection", (socket) => {
   });
 
   socket.on("notification", msg => {
-    console.log(msg);
     io.emit("notification", msg);
   });
 });
