@@ -8,7 +8,8 @@ const http = require("http").createServer(app);
 const https = require("https");
 const io = require('socket.io')(http);
 
-const GOOGLE_APIKEY = process.env.GOOGLE_APIKEY || "NO KEY FOUND IN ENV";
+const GOOGLE_APIKEY = process.env.GOOGLE_APIKEY || undefined;
+if (!GOOGLE_APIKEY) console.error("ERROR: Google API key is not defined in the env");
 
 app.use(express.static(path.join(__dirname, "./build")));
 app.use(express.static(path.join(__dirname, "./slave/img")));
@@ -42,13 +43,14 @@ app.get("/findCity", (req, res) => {
     });
     resp.on("end", _ => {
       data = JSON.parse(data);
+      let city = {};
       if (data && data.results && data.results.length >= 1 && data.results[0].address_components) {
-        const city = data.results[0].address_components.find(a => a.types[0] === "locality");
+        city = data.results[0].address_components.find(a => a.types[0] === "locality");
       } else {
         console.log("City not found");
         console.log("Data: ", data);
         console.log("Using process.env.CITY || Munich");
-        const city = {long_name: process.env.CITY || "Munich"};
+        city = {long_name: process.env.CITY || "Munich"};
       }
       res.send(city).status(200);
     });
