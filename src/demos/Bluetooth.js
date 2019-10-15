@@ -1,8 +1,10 @@
 import React from "react";
 import { slidesGeneration } from "../utils/SlidesGenerator";
+import ImgBluetooth from "../assets/bluetooth.jpg";
 
 const name = "Bluetooth API";
 const demoName = "bluetooth";
+const image = ImgBluetooth;
 const details = [
   "Connects to Bluetooth devices",
   "Promise based API",
@@ -89,4 +91,4 @@ const demo = {
   }
 };
 
-export default slidesGeneration(name, demoName, details, codeSamples, demo);
+export default slidesGeneration(name, demoName, details, codeSamples, demo, image);

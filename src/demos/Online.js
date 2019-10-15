@@ -1,8 +1,10 @@
 import React from "react";
 import { slidesGeneration } from "../utils/SlidesGenerator"; 
+import ImgOnline from "../assets/online.jpg";
 
 const name = "Online/Offline Status";
 const demoName = "online";
+const image = ImgOnline;
 const details = [
   "Tells you if a user is online",
   "Useful when build PWAs",
@@ -41,4 +43,4 @@ const demo = {
   }
 };
 
-export default slidesGeneration(name, demoName, details, codeSamples, demo);
+export default slidesGeneration(name, demoName, details, codeSamples, demo, image);

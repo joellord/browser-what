@@ -1,9 +1,11 @@
 import React from 'react';
 
 import DeckOnSteroids from "./components/DeckOnSteroids";
-import { Slide, Title, List, Text, Image } from "@sambego/diorama";
+import { Slide, Title, Subtitle, List, Text, Image, Footer } from "@sambego/diorama";
 import GetReady from "./slides/GetReady";
 import ThankYou from "./slides/ThankYou";
+import TalkTitle from "./slides/TalkTitle";
+import About from "./slides/About";
 
 import WS from "./demos/Websockets";
 import Notif from "./demos/Notifications";
@@ -21,11 +23,27 @@ import Bluetooth from "./demos/Bluetooth";
 
 import './App.css';
 import ImgBye from "./assets/bye.gif";
+import ImgWoohoo from "./assets/woohoo.gif";
+
+const titleStyleForImageSlide = {
+  position: "absolute",
+  left: "50%",
+  top: "35%",
+  transform: "translate3d(-50%, -50%, 0)",
+  color: "#fff",
+  margin: 0,
+  fontSize: "6rem",
+  background: "#000000cc"
+};
+
+const titleStyleForWoohoo = Object.assign({}, titleStyleForImageSlide, {top: "50%"});
 
 function App() {
+  const footer = <Footer left="@joel__lord&nbsp;&nbsp;#iJS" right="&nbsp;" />
+
   return (
     <div className="App">
-      <DeckOnSteroids swipeToChange={false}>
+      <DeckOnSteroids swipeToChange={false} footer={footer}>
         <Slide>
           <Title>
             Joel TODO
@@ -37,17 +55,18 @@ function App() {
           </List>
         </Slide>
 
+        <TalkTitle />
+
+        <About />
+
         <Slide>
-          <Title>Title</Title>
+          <Image src={ImgWoohoo} full />
+          <Title style={titleStyleForWoohoo}>Twitter Notifications</Title>
         </Slide>
 
         <Slide>
-          <Title>About Me</Title>
-        </Slide>
-
-        <Slide>
-          <Title>Connect to the App</Title>
-          <Title>http://ezurl.to/browser-what</Title>
+          <Title>Live Demos!</Title>
+          <Subtitle><a href="#">http://ezurl.to/browser-what</a></Subtitle>
         </Slide>
 
         {/* WebSockets */}

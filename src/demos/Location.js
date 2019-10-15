@@ -1,8 +1,10 @@
 import React from "react";
 import { slidesGeneration } from "../utils/SlidesGenerator"; 
+import ImgGeolocation from "../assets/geolocation.jpg"
 
 const name = "Geolocation API";
 const demoName = "location";
+const image = ImgGeolocation;
 const details = [
   "Returns the position of the user in lat/long",
   "You can also track movement",
@@ -78,4 +80,4 @@ const demo = {
   }
 };
 
-export default slidesGeneration(name, demoName, details, codeSamples, demo);
+export default slidesGeneration(name, demoName, details, codeSamples, demo, image);

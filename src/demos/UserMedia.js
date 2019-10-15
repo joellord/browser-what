@@ -1,8 +1,10 @@
 import React from "react";
 import { slidesGeneration } from "../utils/SlidesGenerator"; 
+import ImgWebcam from "../assets/webcam.jpg";
 
 const name = "getUserMedia API";
 const demoName = "getusermedia";
+const image = ImgWebcam;
 const details = [
   "Gives you access to a user microphone or camera",
   "Provides you with a stream",
@@ -95,4 +97,4 @@ const demo = {
   }
 };
 
-export default slidesGeneration(name, demoName, details, codeSamples, demo);
+export default slidesGeneration(name, demoName, details, codeSamples, demo, image);

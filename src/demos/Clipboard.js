@@ -1,8 +1,10 @@
 import React from "react";
 import { slidesGeneration } from "../utils/SlidesGenerator"; 
+import ImgClipboard from "../assets/clipboard.jpg";
 
 const name = "Clipboard API";
 const demoName = "clipboard";
+const image = ImgClipboard;
 const details = [
   "Useful if you share snippets of code",
   "Paste does not work will all browsers",
@@ -76,4 +78,4 @@ const demo = {
   }
 };
 
-export default slidesGeneration(name, demoName, details, codeSamples, demo);
+export default slidesGeneration(name, demoName, details, codeSamples, demo, image);

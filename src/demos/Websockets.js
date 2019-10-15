@@ -1,8 +1,10 @@
 import React from "react";
 import { slidesGeneration } from "../utils/SlidesGenerator"; 
+import ImgSocket from "../assets/sockets.jpg";
 
 const name = "WebSockets";
 const demoName = "websockets";
+const image = ImgSocket;
 const details = [
   "Not a Browser API",
   "Allows for full duplex communication",
@@ -64,4 +66,4 @@ const demo = {
   }
 };
 
-export default slidesGeneration(name, demoName, details, codeSamples, demo);
+export default slidesGeneration(name, demoName, details, codeSamples, demo, image);

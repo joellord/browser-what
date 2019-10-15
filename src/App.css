@@ -44,3 +44,26 @@
 .gamepadGame .torpedo:before {
   content: "v";
 }
+
+.diorama-footer-left {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  padding: 0 0 0 3rem;
+  background: transparent url("assets/twitter.png") 0 0.25rem no-repeat;
+  background-size: 2rem;
+  box-shadow: none;
+  color: #1b2b34;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.diorama-footer-right {
+  position: fixed;
+  bottom: 2rem;
+  right: 0rem;
+  padding: 1rem 0rem 0rem 12rem;
+  background: transparent url("assets/openshift.png") 0 0 no-repeat;
+  background-size: 10rem;
+  box-shadow: none;
+}

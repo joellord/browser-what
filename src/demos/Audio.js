@@ -1,8 +1,10 @@
 import React from "react";
 import { slidesGeneration } from "../utils/SlidesGenerator"; 
+import ImgAudio from "../assets/audio.jpg";
 
 const name = "Web Audio API";
 const demoName = "audio";
+const image = ImgAudio;
 const details = [
   "Takes and audio stream and manipulates it",
   "You can modulate the sound with oscillators"
@@ -118,4 +120,4 @@ const demo = {
   }
 };
 
-export default slidesGeneration(name, demoName, details, codeSamples, demo);
+export default slidesGeneration(name, demoName, details, codeSamples, demo, image);

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 
-import {Slide, Title, Subtitle, List, Browser, Code } from "@sambego/diorama";
+import {Slide, Title, Subtitle, List, Browser, Code, Image } from "@sambego/diorama";
 import DemoSlide from "../components/DemoSlide";
 import realtime from "../utils/Realtime";
 
-const slidesGeneration = (name, demoName, details, codeSamples, demo) => {
+const slidesGeneration = (name, demoName, details, codeSamples, demo, image) => {
   let components = {};
 
   class Demo extends Component {
@@ -53,9 +53,22 @@ const slidesGeneration = (name, demoName, details, codeSamples, demo) => {
   }
   components["Demo"] = Demo;
 
+  const titleStyleForImageSlide = {
+    position: "absolute",
+    left: "50%",
+    top: "35%",
+    transform: "translate3d(-50%, -50%, 0)",
+    color: "#fff",
+    margin: 0,
+    background: "#000000cc"
+  };
+  
   components["Title"] = () => (
     <Slide>
-      <Title>{name}</Title>
+      {image &&
+      <Image src={image} full />
+      }
+      <Title style={titleStyleForImageSlide}>{name}</Title>
     </Slide>
   );
 

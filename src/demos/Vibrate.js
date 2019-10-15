@@ -1,8 +1,10 @@
 import React from "react";
 import { slidesGeneration } from "../utils/SlidesGenerator"; 
+import ImgVibrate from "../assets/vibrate.jpg";
 
 const name = "Vibrate API";
 const demoName = "vibrate";
+const image = ImgVibrate;
 const details = [
   "Very annoying",
   "Don't abuse it",
@@ -45,4 +47,4 @@ const demo = {
   }
 };
 
-export default slidesGeneration(name, demoName, details, codeSamples, demo);
+export default slidesGeneration(name, demoName, details, codeSamples, demo, image);

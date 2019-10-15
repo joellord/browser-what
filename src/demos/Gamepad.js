@@ -1,8 +1,10 @@
 import React from "react";
 import { slidesGeneration } from "../utils/SlidesGenerator"; 
+import ImgGamepad from "../assets/gamepad.jpg";
 
 const name = "Gamepad API";
 const demoName = "gamepad";
+const image = ImgGamepad;
 const details = [
   "Processes input from a USB connected gamepad",
   "Great for games or funky navigation in your app",
@@ -232,4 +234,4 @@ const demo = {
   }
 };
 
-export default slidesGeneration(name, demoName, details, codeSamples, demo);
+export default slidesGeneration(name, demoName, details, codeSamples, demo, image);

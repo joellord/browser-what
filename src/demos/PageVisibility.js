@@ -1,8 +1,10 @@
 import React from "react";
 import { slidesGeneration } from "../utils/SlidesGenerator"; 
+import ImgPageVisibility from "../assets/pagevisibility.jpg";
 
 const name = "Page Visibility";
 const demoName = "pagevisibility";
+const image = ImgPageVisibility;
 const details = [
   "Tells you if a document is in the display",
   "Useful to pause interactions",
@@ -60,4 +62,4 @@ const demo = {
   }
 };
 
-export default slidesGeneration(name, demoName, details, codeSamples, demo);
+export default slidesGeneration(name, demoName, details, codeSamples, demo, image);

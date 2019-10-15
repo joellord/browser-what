@@ -1,9 +1,11 @@
 import React from "react";
 import { slidesGeneration } from "../utils/SlidesGenerator"; 
 import { NOTIF_ICON } from "../utils/constants";
+import ImgNotification from "../assets/notification.jpg"
 
 const name = "Notifications API";
 const demoName = "notifications";
+const image = ImgNotification;
 const details = [
   "Alerts users outside of a page",
   "Not to be confused with Push notifications",
@@ -62,4 +64,4 @@ const demo = {
   }
 };
 
-export default slidesGeneration(name, demoName, details, codeSamples, demo);
+export default slidesGeneration(name, demoName, details, codeSamples, demo, image);

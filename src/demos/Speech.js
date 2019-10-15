@@ -1,8 +1,10 @@
 import React from "react";
 import { slidesGeneration } from "../utils/SlidesGenerator"; 
+import ImgSpeech from "../assets/speech.jpg";
 
 const name = "Speech API";
 const demoName = "speechsynthesis";
+const image = ImgSpeech;
 const details = [
   "In browser Text-to-speech",
   "Multiple voices and languages",
@@ -70,4 +72,4 @@ const demo = {
   }
 };
 
-export default slidesGeneration(name, demoName, details, codeSamples, demo);
+export default slidesGeneration(name, demoName, details, codeSamples, demo, image);

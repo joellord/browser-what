@@ -1,9 +1,11 @@
 import React from "react";
 import { slidesGeneration } from "../utils/SlidesGenerator"; 
 import ImageBanana from "../assets/banana.jpg"
+import ImgGyroscope from "../assets/gyroscope.jpg";
 
 const name = "Device Orientation";
 const demoName = "deviceorientationevent";
+const image = ImgGyroscope;
 const details = [
   "Provides the device orientation",
   "Coordinates of the three axis (α, β, γ)",
@@ -54,4 +56,4 @@ const demo = {
   }
 };
 
-export default slidesGeneration(name, demoName, details, codeSamples, demo);
+export default slidesGeneration(name, demoName, details, codeSamples, demo, image);
