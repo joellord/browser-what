@@ -52,6 +52,7 @@ const demo = {
     let bufferLength = analyzer.frequencyBinCount;
     let dataArray = new Uint8Array(bufferLength);
     let canvas, canvasCtx;
+    ctx.oscillator = oscillator;
     setTimeout(() => {
       canvas = document.querySelector("#audioCanvas");
       canvasCtx = canvas.getContext("2d");
@@ -117,6 +118,7 @@ const demo = {
     )
   },
   destroy: (ctx) => {
+    ctx.oscillator.stop();
   }
 };
 

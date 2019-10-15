@@ -509,6 +509,7 @@ demos.getusermedia = {
   }
 }
 
+let oscillator;
 demos.audio = {
   init: (ctx) => {
     let audioStarted = false;
@@ -516,7 +517,7 @@ demos.audio = {
       if (audioStarted) return;
       audioStarted = true;
       let audioCtx = new AudioContext();
-      let oscillator = audioCtx.createOscillator();
+      oscillator = audioCtx.createOscillator();
       let gainNode = audioCtx.createGain();
       oscillator.connect(gainNode);
       gainNode.connect(audioCtx.destination);
@@ -551,6 +552,9 @@ demos.audio = {
     }
     document.onclick = start;
     document.ontouch = start;
+  },
+  destroy: () => {
+    oscillator.stop();
   }
 }
 
