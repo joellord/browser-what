@@ -34,6 +34,12 @@ let notification = new Notification("Hello", {
   body: "More details on this notification",
   icon: "http://link.to/image"
 });
+  `}, {
+    title: "Mobile Devices",
+    code: `
+navigator.serviceWorker.register("slave/sw").then(registration => {
+  registration.showNotification("This is a notification");
+});
   `}
 ];
 

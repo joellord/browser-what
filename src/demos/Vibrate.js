@@ -35,6 +35,11 @@ if ("vibrate" in navigator) {
 ];
 
 const demo = {
+  support: {
+    ios: false,
+    android: true,
+    desktop: true
+  },
   init: (ctx) => {
     
   },

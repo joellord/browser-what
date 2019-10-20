@@ -50,6 +50,11 @@ socket.on("message", msg => {
 ];
 
 const demo = {
+  support: {
+    ios: true,
+    android: true,
+    desktop: true
+  },
   demoSocketCb: (msg, ctx) => {
     console.log("cb", ctx);
     let lastMessages = ctx.state.lastMessages

@@ -66,7 +66,7 @@ function App() {
 
         <Slide>
           <Title>Live Demos!</Title>
-          <Subtitle><a href="#">http://ezurl.to/browser-what</a></Subtitle>
+          <Subtitle><a href="#" style={{fontSize: "3.5vw"}}>http://ezurl.to/browser-what</a></Subtitle>
         </Slide>
 
         {/* WebSockets */}
@@ -91,6 +91,7 @@ function App() {
         <Notif.Code1 />
         <Notif.Code2 />
         <Notif.Code3 />
+        <Notif.Code4 />
         <GetReady />
         <Notif.Demo />
         <Notif.Support />

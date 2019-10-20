@@ -37,6 +37,11 @@ navigator.clipboard.readText().then(
 ];
 
 const demo = {
+  support: {
+    ios: false,
+    android: true,
+    desktop: true
+  },
   init: (ctx) => {
     ctx.setState({
       clipboardText: "Some Lorem Ipsum stuff"

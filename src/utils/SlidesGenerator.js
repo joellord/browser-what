@@ -45,7 +45,16 @@ const slidesGeneration = (name, demoName, details, codeSamples, demo, image) => 
         <DemoSlide name={demoName}>
           <Subtitle>{name} Demo</Subtitle>
           <div>
-            {demoRender}
+            <div>
+              {demoRender}
+            </div>
+            {demo.support && 
+            <div>
+              {demo.support.ios ? "👍" : "👎" } iOS / 
+              {demo.support.android ? "👍" : "👎" }Android / 
+              {demo.support.desktop ? "👍" : "👎" }Desktop
+            </div>
+            }
           </div>
         </DemoSlide>
       )

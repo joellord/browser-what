@@ -39,6 +39,11 @@ navigator.geolocation.clearWatch(watchID);
 ];
 
 const demo = {
+  support: {
+    ios: true,
+    android: true,
+    desktop: true
+  },
   init: (ctx) => {
     navigator.geolocation.getCurrentPosition(pos => {
       ctx.setState({pos, soWhat: true});

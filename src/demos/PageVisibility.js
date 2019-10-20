@@ -25,6 +25,11 @@ document.addEventListener("visibilitychange", <cb>);
 ];
 
 const demo = {
+  support: {
+    ios: true,
+    android: true,
+    desktop: true
+  },
   init: (ctx) => {
     ctx.setState({seconds: 0});
     const increaseTimer = () => {

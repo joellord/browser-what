@@ -65,6 +65,11 @@ const destroyTorpedo = (torpedoIndex) => {
 let gameStarted = false;
 
 const demo = {
+  support: {
+    ios: true,
+    android: true,
+    desktop: true
+  },
   init: (ctx) => {
     ctx.setState({
       score: 0,

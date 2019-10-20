@@ -53,6 +53,11 @@ return navigator.bluetooth.requestDevice({filters: [{services: ['heart_rate']}]}
 ];
 
 const demo = {
+  support: {
+    ios: true,
+    android: true,
+    desktop: true
+  },
   init: (ctx) => {
     ctx.setState({chartData: []});
   },

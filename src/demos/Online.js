@@ -29,6 +29,11 @@ window.onoffline = () => {
 ];
 
 const demo = {
+  support: {
+    ios: true,
+    android: true,
+    desktop: true
+  },
   init: (ctx) => {
     ctx.setState({
       onLine: navigator.onLine

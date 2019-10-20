@@ -44,6 +44,11 @@ navigator.mediaDevices.getUserMedia({video: true})
 ];
 
 const demo = {
+  support: {
+    ios: false,
+    android: true,
+    desktop: true
+  },
   init: (ctx) => {
   },
   render: (ctx) => {

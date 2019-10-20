@@ -46,6 +46,11 @@ const speechLines = [
 ];
 
 const demo = {
+  support: {
+    ios: true,
+    android: true,
+    desktop: true
+  },
   init: (ctx) => {
 
   },

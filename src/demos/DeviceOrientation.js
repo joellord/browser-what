@@ -29,6 +29,11 @@ window.ondevicemotion = (event) => {
 ];
 
 const demo = {
+  support: {
+    ios: false,
+    android: true,
+    desktop: true
+  },
   init: (ctx) => {
     ctx.setState({
       alpha: 0,
