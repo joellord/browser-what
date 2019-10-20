@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Slide, Image, Subtitle, Columns, List } from '@sambego/diorama';
-import Speaker from "../assets/JLord.jpg";
+import Speaker from "../assets/JLord.png";
 
 
 export default class TalkTitle extends Component {
