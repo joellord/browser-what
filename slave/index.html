@@ -1,6 +1,8 @@
 <html>
 <head>
   <title>My Browser Does What?</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <style>
@@ -15,86 +17,197 @@
     visibility: hidden;
   }
 }
+
+h1, h2, h3, h4, h5, .center {
+  text-align: center;
+}
+
 </style>
 
-<body>
-  <h1>My Browser Does What?</title>
-  <h3>iJS - Munich - Oct 2019</h3>
-
-  <div id="app">
-
+<body class="fluid">
+  <div class="row">
+    <div class="col-12">
+      <h1>My Browser Does What?</h1>
+      <h3>iJS - Munich - Oct 2019</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 center">
+      <div id="app"></div>
+    </div>
   </div>
 </body>
 
 <template id="waiting">
-Waiting...
+<div class="row">
+  <div class="col-12">
+    Waiting...
+  </div>
+</div>
 </template>
 
 <template id="websockets">
-This is the Websockets demo<br/>
-<input type="text" id="wsText">
-<button id="wsSend" type="button">Send</button>
-<div id="lastMessages"></div>
+  <div class="row">
+    <div class="col-12">
+      <h4>Websockets Demo</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+        <input type="text" id="wsText">
+        <button id="wsSend" type="button">Send</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div id="lastMessages"></div>
+    </div>
+  </div>
 </template>
 
 <template id="notifications">
-This is the notifications demo<br/>
-<button id="notificationsBtn">Listen for notifications</button>
-<div id="notificationsStatus"></div>
+  <div class="row">
+    <div class="col-12">
+      <h4>Notifications Demo</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <button id="notificationsBtn">Listen for notifications</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div id="notificationsStatus"></div>
+    </div>
+  </div>
 </template>
 
 <template id="location">
-Geolocation API demo<br/>
-<button id="locationBtn">Where Am I?</button>
-<div id="location"></div>
+  <div class="row">
+    <div class="col-12">
+      <h4>Geolocation Demo</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <button id="locationBtn">Where Am I?</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div id="location"></div>
+    </div>
+  </div>
 </template>
 
 <template id="pagevisibility">
-Page Visibility demo <br/>
-Page is <span id="pagevisibilityStatus">visible 😉</span><br/>
-Look at the page title
+  <div class="row">
+    <div class="col-12">
+      <h4>Page Visibility Demo</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      Page is <span id="pagevisibilityStatus">visible 😉</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      Look at the page title
+    </div>
+  </div>
 </template>
 
 <template id="speechsynthesis">
-Speech API demo <br/>
-<form>
-  <input type="text" id="speechTxt" placeholder="Text to speak"/><br/>
-  <select id="voices"></select><br/>
-  Pitch: <input type="number" id="pitch" value="1" length=4 />Rate: <input type="number" id="rate" value="1" length=4 /><br/>
-  <button id="speak" type="button">Speak</button>
-</form>
+  <div class="row">
+    <div class="col-12">
+      <h4>Speech Synthesis Demo</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <form>
+          <input type="text" id="speechTxt" placeholder="Text to speak"/><br/>
+          <select id="voices"></select><br/>
+          Pitch: <input type="number" id="pitch" value="1" length=4 />Rate: <input type="number" id="rate" value="1" length=4 /><br/>
+          <button id="speak" type="button">Speak</button>
+        </form>
+    </div>
+  </div>
 </template>
 
 <template id="online">
-Online/Offline Status Demo<br/>
-<div style="height: 300px; width: 300px; border-radius: 100%; background-color: green" id="statusBall">
-  <div style="text-align:center; padding-top: 130px; color: white; font-weight: bold;" id="statusText">ONLINE</div>
-</div>
+  <div class="row">
+    <div class="col-12">
+      <h4>Online/Offline Status Demo</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 center">
+      <div style="text-align: center; height: 300px; width: 300px; border-radius: 100%; background-color: green" id="statusBall">
+        <div style="text-align:center; padding-top: 130px; color: white; font-weight: bold;" id="statusText">ONLINE</div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <template id="deviceorientationevent">
-Device Orientation Demo <br/>
-<div id="room" style="text-align: center; width: 95%; height: 50%; border: solid 3px black; border-radius: 25px;"> 
-  <div id="ball" style="position: relative; height: 50px; width: 50px; border-radius: 100%; background-color: blue;">&nbsp;</div>
-</div>
+  <div class="row">
+    <div class="col-12">
+      <h4>Device Orientation Demo</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 center">
+      <div id="room" style="text-align: center; width: 95%; height: 300px; border: solid 3px black; border-radius: 25px;"> 
+        <div id="ball" style="position: relative; height: 50px; width: 50px; border-radius: 100%; background-color: blue;">&nbsp;</div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <template id="vibrate">
-Vibration API<br/>
-<div id="vibrateName"></div><br/>
-
-<button id="vibrateBtn">Start</button>
-<button id="vibrateStopBtn">Stop</button>
-<br/>
-<img id="vibrateImg" height="50%"/><br/>
+  <div class="row">
+    <div class="col-12">
+      <h4>Vibration API Demo</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div id="vibrateName"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <button id="vibrateBtn">Start</button>
+      <button id="vibrateStopBtn">Stop</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <img id="vibrateImg" height="50%"/>
+    </div>
+  </div>
 </template>
 
 <template id="clipboard">
-Copy & Paste (Clipboard API) demo<br/>
-<button id="copyBtn">Copy</button>
-<button id="pasteBtn">Paste</button>
-<hr/>
-<input type="text" id="clipboardText" value="Some text to copy"/>
+  <div class="row">
+    <div class="col-12">
+      <h4>Copy & Paste (Clipboard API) Demo</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">     
+      <button id="copyBtn">Copy</button>
+      <button id="pasteBtn">Paste</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <input type="text" id="clipboardText" value="Some text to copy"/>
+    </div>
+  </div>
 </template>
 
 <template id="getusermedia">
