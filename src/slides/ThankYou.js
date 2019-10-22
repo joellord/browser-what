@@ -9,7 +9,7 @@ export default class ThankYou extends Component {
         <Text>My Browser Does What?</Text>
         <Text>iJS - Munich, Germany - October 22, 2019</Text>
         <br/>
-        <Subtitle><a href="https://ezurl.to/browser-what" style={{"textTransform": "none"}}>ezurl.to/browser-what</a></Subtitle>
+        <Subtitle><a href="https://ezurl.to/browser-api" style={{"textTransform": "none"}}>ezurl.to/browser-what</a></Subtitle>
       </Slide>
     )
   }
