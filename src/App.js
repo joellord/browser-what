@@ -39,7 +39,7 @@ const titleStyleForImageSlide = {
 const titleStyleForWoohoo = Object.assign({}, titleStyleForImageSlide, {top: "50%"});
 
 function App() {
-  const footer = <Footer left="@joel__lord&nbsp;&nbsp;#iJS" right="&nbsp;" />
+  const footer = <Footer left="@joel__lord&nbsp;&nbsp;#iJScon" right="&nbsp;" />
 
   return (
     <div className="App">
