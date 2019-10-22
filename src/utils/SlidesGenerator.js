@@ -50,9 +50,9 @@ const slidesGeneration = (name, demoName, details, codeSamples, demo, image) => 
             </div>
             {demo.support && 
             <div>
-              {demo.support.ios ? "👍" : "👎" } iOS / 
-              {demo.support.android ? "👍" : "👎" }Android / 
-              {demo.support.desktop ? "👍" : "👎" }Desktop
+              {demo.support.ios ? "✅" : "⛔" } iOS / 
+              {demo.support.android ? "✅" : "⛔" }Android / 
+              {demo.support.desktop ? "✅" : "⛔" }Desktop
             </div>
             }
           </div>
