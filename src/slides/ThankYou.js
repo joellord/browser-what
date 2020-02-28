@@ -7,7 +7,7 @@ export default class ThankYou extends Component {
       <Slide>
         <Title>Thank You!</Title>
         <Text>My Browser Does What?</Text>
-        <Text>iJS - Munich, Germany - October 22, 2019</Text>
+        <Text>South Florida Code Camp - Fort Lauderdal - February 2020</Text>
         <br/>
         <Subtitle><a href="https://ezurl.to/browser-api" style={{"textTransform": "none"}}>ezurl.to/browser-api</a></Subtitle>
       </Slide>
