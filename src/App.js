@@ -23,6 +23,7 @@ import Bluetooth from "./demos/Bluetooth";
 
 import './App.css';
 import ImgBye from "./assets/bye.gif";
+import ImgCss from "./assets/cssawesome.gif";
 import ImgWoohoo from "./assets/woohoo.gif";
 
 const titleStyleForImageSlide = {
@@ -229,6 +230,9 @@ function App() {
         <Gamepad.Code2 />
         <GetReady />
         <Gamepad.Demo />
+        <Slide>
+          <Image src={ImgCss} full />
+        </Slide>
         <Gamepad.Support />
 
         <Slide>
