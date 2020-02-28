@@ -140,10 +140,10 @@ const demo = {
         ctx.setState({
           gamepadBtnA: gamepad.buttons[0].pressed,
           gamepadBtnB: gamepad.buttons[1].pressed,
-          gamepadBtnRight: gamepad.buttons[15].pressed,
-          gamepadBtnLeft: gamepad.buttons[14].pressed,
-          gamepadBtnUp: gamepad.buttons[12].pressed,
-          gamepadBtnDown: gamepad.buttons[13].pressed
+          gamepadBtnRight: gamepad.buttons[14].pressed,
+          gamepadBtnLeft: gamepad.buttons[13].pressed,
+          gamepadBtnUp: gamepad.buttons[11].pressed,
+          gamepadBtnDown: gamepad.buttons[12].pressed
         });
       } else {
         // Mozilla
