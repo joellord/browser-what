@@ -23,7 +23,7 @@ import Bluetooth from "./demos/Bluetooth";
 
 import './App.css';
 import ImgBye from "./assets/bye.gif";
-import ImgCss from "./assets/cssawesome.gif";
+import ImgCss from "./assets/cssawesome.jpg";
 import ImgWoohoo from "./assets/woohoo.gif";
 
 const titleStyleForImageSlide = {
