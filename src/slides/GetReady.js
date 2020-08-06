@@ -10,7 +10,7 @@ export default class GetReady extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {countdown: 5};
+    this.state = {countdown: 10};
     this.decreaseTimer = this.decreaseTimer.bind(this);
   }
 
