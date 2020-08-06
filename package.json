@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@sambego/diorama": "^1.1.3",
+    "@sambego/diorama": "^1.1.4",
     "es6-event-emitter": "^1.10.2",
     "express": "^4.17.1",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "react-scripts": "3.1.2",
     "socket.io": "^2.3.0",
     "socket.io-client": "^2.3.0"
