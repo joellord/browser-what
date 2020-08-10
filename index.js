@@ -67,6 +67,7 @@ app.get("/findCity", (req, res) => {
 });
 
 app.use('/.well-known/acme-challenge/', express.static(__dirname + '/challenges'));
+app.use('/.well-known/pki-validation/', express.static(__dirname + '/challenges'));
 
 io.on("connection", (socket) => {
   socket.on("demoChange", msg => {
