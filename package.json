@@ -5,10 +5,10 @@
   "dependencies": {
     "@sambego/diorama": "^1.1.4",
     "es6-event-emitter": "^1.10.2",
-    "express": "^4.17.1",
+    "express": "^4.22.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.1.2",
+    "react-scripts": "5.0.1",
     "socket.io": "^2.3.0",
     "socket.io-client": "^2.3.0"
   },
